@@ -4,26 +4,23 @@ module.exports = {
     es6: true,
   },
   extends: [
-    'airbnb-base',
+    'plugin:react/recommended',
+    'airbnb',
   ],
   globals: {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly',
   },
   parserOptions: {
+    ecmaFeatures: {
+      jsx: true,
+    },
     ecmaVersion: 2018,
     sourceType: 'module',
   },
+  plugins: [
+    'react',
+  ],
   rules: {
-    'no-console': 'off',
-    'no-plusplus': ['error',
-      {
-        allowForLoopAfterthoughts: true,
-      }],
-    'no-use-before-define': ['error',
-      {
-        functions: false,
-      }],
-    'import/extensions': 'warn',
   },
 };
