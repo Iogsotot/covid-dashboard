@@ -1,0 +1,18 @@
+@import '../../../../../../shared/variables';
+
+.graph {
+    width: 100%;
+    background-color: $gray-800;
+    border: 1px solid $gray-700;
+    min-height: 250px;
+    margin-top: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .toggles-wrapper {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+    }
+}
