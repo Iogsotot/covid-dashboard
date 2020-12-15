@@ -1,7 +1,7 @@
 import React from 'react';
-import Cases from './components/Cases/cases';
-import Map from './components/Map/map';
-import Statistic from './components/Statistic/statistic';
+import Cases from './Cases/cases';
+import Map from './Map/map';
+import Statistic from './Statistic/statistic';
 import './index.scss';
 
 const Main = () => (

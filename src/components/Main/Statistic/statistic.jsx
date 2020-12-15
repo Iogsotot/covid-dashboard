@@ -1,7 +1,7 @@
 import React from 'react';
-import GlobalStatistic from './components/GlobalStatistic/global-statistic';
-import TestsStatistic from './components/TestsStatistic/tests-statistic';
-import Graph from './components/Graph/graph';
+import GlobalStatistic from '../GlobalStatistic/global-statistic';
+import TestsStatistic from '../TestsStatistic/tests-statistic';
+import Graph from '../Graph/graph';
 import './statistic.scss';
 
 const Statistic = () => (
