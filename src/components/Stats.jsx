@@ -44,6 +44,7 @@ export default class Stats {
     // console.log('++++++++++++++++++++++++++++++++++++++++++++++');
 
     const covidDataPerCountries = {
+      countries,
       countryName: covidData[countryIndex].country,
       flag: covidData[countryIndex].countryInfo.flag,
       cases: covidData[countryIndex].cases,
@@ -108,7 +109,7 @@ export default class Stats {
   async getCountryTimeline() {
     const url = this.urls.countryTimeline;
     const covidData = await this.getDataFromUrl(url);
-    console.log(covidData);
+    // console.log(covidData);
     const countryTimeline = {
       covidData,
       countryName: covidData.country,

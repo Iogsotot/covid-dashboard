@@ -51,6 +51,10 @@ class App extends Component {
 
     // ~~~~~~~~ данные по СТРАНАМ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
+    // список всех стран
+    // console.log(covidPerCountriesStats.countries);
+    // название запрашиваемой страны
+    // console.log(covidPerCountriesStats.countryName);
     // флаг конкретной страны:
     // console.log(covidPerCountriesStats.flag);
     // ~~~~~~~~ данные по конкретной стране на текущий день ~~~~~~~~~~~
