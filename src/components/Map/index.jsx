@@ -2,12 +2,13 @@ import * as am4core from '@amcharts/amcharts4/core';
 import * as am4maps from '@amcharts/amcharts4/maps';
 // eslint-disable-next-line camelcase
 import am4geodata_worldLow from '@amcharts/amcharts4-geodata/worldLow';
-import React, { useLayoutEffect } from 'react';
+import React, { useState, useLayoutEffect } from 'react';
 import countryData from './data';
 import './index.scss';
 
 const Map = () => {
-  // const chart = useRef(null);
+  // eslint-disable-next-line no-unused-vars
+  const [data, setData] = useState(countryData);
 
   useLayoutEffect(() => {
     const map = am4core.create('chartdiv', am4maps.MapChart);
@@ -17,9 +18,9 @@ const Map = () => {
 
     const polygonSeries = map.series.push(new am4maps.MapPolygonSeries());
     polygonSeries.useGeodata = true;
-    // polygonSeries.mapPolygons.template.events.on('hit', (ev) => {
-    //   map.zoomToMapObject(ev.target);
-    // });
+    polygonSeries.mapPolygons.template.events.on('hit', (ev) => {
+      map.zoomToMapObject(ev.target);
+    });
 
     // Configure series
     const polygonTemplate = polygonSeries.mapPolygons.template;
@@ -42,7 +43,7 @@ const Map = () => {
     polygonSeries.exclude = ['AQ'];
 
     // TODO replace dummy data by real-world API
-    polygonSeries.data = countryData;
+    polygonSeries.data = data;
     map.zoomControl = new am4maps.ZoomControl();
     map.zoomControl.slider.height = 100;
 
@@ -86,9 +87,9 @@ const Map = () => {
       maxRangeIndex.label.text = `${heatLegendKey.numberFormatter.format(max)}`;
     });
 
-    return () => {
-    };
-  }, []);
+    // return () => {
+    // };
+  }, [data]);
 
   return (
     <section className="map">
