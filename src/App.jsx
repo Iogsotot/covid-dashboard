@@ -1,4 +1,4 @@
-/* eslint-disable no-console */
+/* eslint-disable */
 import React, { Component } from 'react';
 import Stats from './components/Stats';
 import Header from './components/Header';
@@ -10,9 +10,11 @@ class App extends Component {
   async componentDidMount() {
     const stats = new Stats();
     const covidTotalStats = await stats.getTotalStats();
-    // сюда передаём название выбранной пользователь страны
-    const inputValue = 'Sweden';
+
+    // сюда передаём название выбранной пользователем страны
+    const inputValue = 'Afghanistan';    
     const covidPerCountriesStats = await stats.getPerCountryStats(inputValue);
+
     // Дата последнего обновления данных:
     console.log(`Last update: ${covidTotalStats.updated}`);
     // ~~~~~~~~ данные по всему миру на текущий день ~~~~~~~~~~~
