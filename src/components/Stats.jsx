@@ -1,9 +1,13 @@
 /* eslint-disable no-console */
 export default class Stats {
-  constructor() {
+  constructor(countryName = 'Russia') {
+    this.countryName = countryName;
     this.urls = {
       perCountryData: 'https://corona.lmao.ninja/v2/countries',
       totalData: 'https://corona.lmao.ninja/v2/all',
+      worldTimeline: 'https://disease.sh/v3/covid-19/historical/all?lastdays=all',
+      countryTimeline: `https://disease.sh/v3/covid-19/historical${`/${this.countryName}`}?lastdays=all`,
+      allCountriesTimeline: 'https://disease.sh/v3/covid-19/historical?lastdays=all',
     };
   }
 
@@ -64,11 +68,8 @@ export default class Stats {
     return covidDataPerCountries;
   }
 
-  async getTotalStats(forYesterday = false) {
-    let url = this.urls.totalData;
-    if (forYesterday) {
-      url += '?yesterday';
-    }
+  async getTotalStats() {
+    const url = this.urls.totalData;
     const covidData = await this.getDataFromUrl(url);
     const TotalCovidData = {
       cases: covidData.cases,
@@ -90,5 +91,64 @@ export default class Stats {
     };
     // weight = 553B
     return TotalCovidData;
+  }
+
+  async getWorldTimeline() {
+    const url = this.urls.worldTimeline;
+    const covidData = await this.getDataFromUrl(url);
+    const worldTimeline = {
+      cases: covidData.cases,
+      deaths: covidData.deaths,
+      recovered: covidData.recovered,
+    };
+    // weight = 17 KB
+    return worldTimeline;
+  }
+
+  async getCountryTimeline() {
+    const url = this.urls.countryTimeline;
+    const covidData = await this.getDataFromUrl(url);
+    console.log(covidData);
+    const countryTimeline = {
+      covidData,
+      countryName: covidData.country,
+      cases: covidData.timeline.cases,
+      deaths: covidData.timeline.deaths,
+      recovered: covidData.timeline.recovered,
+    };
+    // weight = 15.2 KB
+    return countryTimeline;
+  }
+
+  async getTotalTimeline(countryName = 'Congo') {
+    const url = this.urls.allCountriesTimeline;
+    const covidData = await this.getDataFromUrl(url);
+
+    const countries = [];
+    function getCountries() {
+      for (let i = 0; i < Object.keys(covidData).length; i += 1) {
+        countries[i] = covidData[i].country;
+      }
+      return countries;
+    }
+
+    const countryIndex = getCountries().indexOf(countryName); // если нет в массиве, то -1
+    // console.log('++++++++++++++++++++++++++++++++++++++++++++++');
+    // console.log(countryName);
+    // console.log(countryIndex);
+    // console.log(getCountries());
+    // console.log('++++++++++++++++++++++++++++++++++++++++++++++');
+
+    const allCountriesTimeline = {
+      covidData,
+      countries: getCountries(),
+      countryName: covidData[countryIndex].country,
+      cases: covidData[countryIndex].timeline.cases,
+      deaths: covidData[countryIndex].timeline.deaths,
+      recovered: covidData[countryIndex].timeline.recovered,
+      fullDataForCountry: covidData[countryIndex],
+    };
+    // weight = 3.5 MB
+    return allCountriesTimeline;
   }
 }
