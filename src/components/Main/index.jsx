@@ -1,6 +1,6 @@
 import React from 'react';
 import Cases from './Cases/cases';
-import Map from './Map/map';
+import Map from '../Map';
 import Statistic from './Statistic/statistic';
 import './index.scss';
 
