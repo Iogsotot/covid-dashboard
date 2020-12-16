@@ -1,13 +1,14 @@
 import React from 'react';
+import Cases from './Cases/cases';
 import Map from '../Map';
+import Statistic from './Statistic/statistic';
 import './index.scss';
 
 const Main = () => (
   <main className="main">
-    <section>
-      <h2>Some additional content goes here;)</h2>
-    </section>
+    <Cases />
     <Map />
+    <Statistic />
   </main>
 );
 
