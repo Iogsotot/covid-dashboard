@@ -1,5 +1,5 @@
 import React from 'react';
-import './countries_list.scss';
+import './countriesList.scss';
 
 function RegionStatistic() {
   const countries = new Array(10).fill('Country');

@@ -1,9 +1,9 @@
 /* eslint-disable */
 import React, { Component } from 'react';
 import Stats from './components/Stats';
-import Header from './components/Header';
-import Main from './components/Main';
-import Footer from './components/Footer';
+import Header from './components/Header/header';
+import Main from './components/Main/Main';
+import Footer from './components/Footer/footer';
 import './App.scss';
 
 class App extends Component {
