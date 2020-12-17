@@ -2,19 +2,19 @@ import React from 'react';
 import './countriesList.scss';
 
 function RegionStatistic() {
-  const countries = new Array(10).fill('Country');
+  const countries = new Array(195).fill('Country');
   const listItem = countries.map((country, index) => (
-    <li className="tests-list__item" key={index.toString()}>
-      <span className="tests-value">00 000 000</span>
+    <li className="countries__item" key={index.toString()}>
+      <span className="item__value">00 000 000</span>
       tests
-      <span className="country-name">{ country }</span>
+      <span className="item__name">{ country }</span>
     </li>
   ));
   return (
-    <div className="countries_list">
-      <h4 className="countries_list__title">title</h4>
-      <div className="countries_list__value">00 000 000</div>
-      <ul className="tests-list">
+    <div className="countries">
+      <input className="country-search" type="text" placeholder="country..." />
+      <h4 className="countries__title">all stats by country</h4>
+      <ul className="countries__list">
         { listItem }
       </ul>
       <div className="toggles-wrapper">

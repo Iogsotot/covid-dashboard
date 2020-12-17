@@ -116,9 +116,9 @@ class App extends Component {
     // console.log(this.state.countriesList)
     return (
       <div className="App">
-        <Header />
-        <Main countriesList={this.state.countriesList} />
-        <Footer />
+        <Header className="header" />
+        <Main className="main" countriesList={this.state.countriesList} />
+        <Footer className="footer" />
       </div>
     );
   }

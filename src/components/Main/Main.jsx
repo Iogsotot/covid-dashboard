@@ -13,9 +13,11 @@ class Main extends React.PureComponent {
   render() {
     return (
       <main className="main">
-        <Map />
-        <Table countriesList={this.props.countriesList} />
-        <CountriesList />
+        <Map className="map" />
+        <div className="tables">
+          <Table countriesList={this.props.countriesList} />
+          <CountriesList />
+        </div>
       </main>
     );
   }

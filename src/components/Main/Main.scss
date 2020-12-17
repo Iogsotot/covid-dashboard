@@ -1,8 +1,18 @@
 .main {
     width: 100%;
-    max-width: 1200px;
+    // max-width: 1200px;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: stretch;
+}
+
+.map {
+  width: 80%;
+}
+
+.tables {
+  width: 20%;
+  height: calc(100vh - 188px);
 }
 
 // @media(max-width: 1000px) {
