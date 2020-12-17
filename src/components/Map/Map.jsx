@@ -2,15 +2,31 @@ import * as am4core from '@amcharts/amcharts4/core';
 import * as am4maps from '@amcharts/amcharts4/maps';
 // eslint-disable-next-line camelcase
 import am4geodata_worldLow from '@amcharts/amcharts4-geodata/worldLow';
-import React, { useState, useLayoutEffect } from 'react';
-import countryData from './dummyData';
+import React, { Component } from 'react';
+// import Stats from '../Stats';
 import './Map.scss';
 
-const Map = () => {
-  // eslint-disable-next-line no-unused-vars
-  const [data, setData] = useState(countryData);
+class Map extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      countryData: [],
+    };
+  }
 
-  useLayoutEffect(() => {
+  componentDidMount() {
+    this.createMap();
+  }
+
+  componentWillUnmount() {
+    if (this.map) {
+      this.map.dispose();
+    }
+  }
+
+  createMap() {
+    const { countryData } = this.state;
+
     const map = am4core.create('chartdiv', am4maps.MapChart);
     // eslint-disable-next-line camelcase
     map.geodata = am4geodata_worldLow;
@@ -43,7 +59,7 @@ const Map = () => {
     polygonSeries.exclude = ['AQ'];
 
     // TODO replace dummy data by real-world API
-    polygonSeries.data = data;
+    polygonSeries.data = countryData;
     map.zoomControl = new am4maps.ZoomControl();
     map.zoomControl.slider.height = 100;
 
@@ -87,21 +103,22 @@ const Map = () => {
       maxRangeIndex.label.text = `${heatLegendKey.numberFormatter.format(max)}`;
     });
 
-    // return () => {
-    // };
-  }, [data]);
+    this.map = map;
+  }
 
-  return (
-    <section className="map">
-      <div
-        id="chartdiv"
-        className="map__chartdiv"
-        style={{
-          width: '100%', height: '550px',
-        }}
-      />
-    </section>
-  );
-};
+  render() {
+    return (
+      <section className="map">
+        <div
+          id="chartdiv"
+          className="map__chartdiv"
+          style={{
+            width: '100%', height: '550px',
+          }}
+        />
+      </section>
+    );
+  }
+}
 
 export default Map;
