@@ -4,23 +4,9 @@ import React, { Component } from 'react';
 import './cases.scss';
 
 class Cases extends Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     countriesList: props.countriesList,
-  //   };
-  //   console.log(this.state.countriesList);
-  // }
 
-  // countries = new Array(100).fill('Country');
-  // listItem = countries.map((country, index) => (
-  //   <li className="region-list__item" key={index.toString()}>
-  //     <span className="cases-value">00 000 000</span>
-  //     { country }
-  //   </li>
-  // ));
   render () {
-    // console.log('In cases: ', this.state.countriesList);
+    console.log('In cases: ', this.props.countriesList);
     return (
     <section className="cases">
       <div className="global-cases">
