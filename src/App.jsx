@@ -27,6 +27,8 @@ class App extends Component {
     // статистика по всем странам за всё время, аргументом передается конкретная страна
     const covidTotalTimeline = await stats.getTotalTimeline(inputValue);
 
+    this.setState({ countriesList: covidPerCountriesStats.countries });
+
     // Дата последнего обновления данных:
     console.log(`Last update: ${covidTotalStats.updated}`);
     // ~~~~~~~~ данные по всему миру на текущий день ~~~~~~~~~~~
@@ -96,31 +98,24 @@ class App extends Component {
     // console.log('recovered: ', covidTotalTimeline.recovered);
     // console.log('full data for one country: ', covidTotalTimeline.fullDataForCountry );
   }
-
+  constructor(props) {
+    super(props);
+    this.state = {
+      countriesList: [],
+    }
+  }
   render() {
+    console.log(this.props);
+    // this.setState({ countriesList: covidPerCountriesStats.countries })
+    // console.log(this.state.countriesList)
     return (
       <div className="App">
         <Header />
-        <Main />
+        <Main countriesList={this.state.countriesList} />
         <Footer />
       </div>
     );
   }
 }
-
-// function App() {
-//   const stats = new Stats();
-//   const covidPerCountriesStats = stats.getPerCountryStats(true);
-//   const covidTotalStats = stats.getTotalStats(false);
-//   console.log(covidPerCountriesStats);
-//   console.log(covidTotalStats);
-//   return (
-//     <div className="App">
-//       <Header />
-//       <Main />
-//       <Footer />
-//     </div>
-//   );
-// }
 
 export default App;
