@@ -134,11 +134,6 @@ export default class Stats {
     }
 
     const countryIndex = getCountries().indexOf(countryName); // если нет в массиве, то -1
-    // console.log('++++++++++++++++++++++++++++++++++++++++++++++');
-    // console.log(countryName);
-    // console.log(countryIndex);
-    // console.log(getCountries());
-    // console.log('++++++++++++++++++++++++++++++++++++++++++++++');
 
     const allCountriesTimeline = {
       covidData,
