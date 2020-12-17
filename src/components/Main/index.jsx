@@ -3,9 +3,9 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 // import PropTypes from 'prop-types';
-import Cases from './Cases/cases';
-import Map from '../Map';
-import Statistic from './Statistic/statistic';
+import Cases from './Table/table';
+import Map from './Map';
+import Statistic from './Map/Graph/graph';
 import './index.scss';
 // import { render } from '@testing-library/react';
 
@@ -20,9 +20,5 @@ class Main extends React.PureComponent {
     );
   }
 }
-
-// Main.propTypes = {
-//   countriesList: PropTypes.arrayOf(PropTypes.string),
-// };
 
 export default Main;

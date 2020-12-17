@@ -1,7 +1,7 @@
 /* eslint-disable */
 import React, { Component } from 'react';
 // import Stats from '../../Stats';
-import './cases.scss';
+import './table.scss';
 
 class Cases extends Component {
 
@@ -14,7 +14,7 @@ class Cases extends Component {
         <div className="global-cases__value">00 000 000</div>
       </div>
       <div className="region">
-        <h4 className="region__title">Cases by Country / Region</h4>
+        <h4 className="region__title">Cases by Country</h4>
         <ul className="region-list">
           
         </ul>

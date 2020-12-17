@@ -16,9 +16,15 @@ class App extends Component {
 
     const covidTotalStats = await stats.getTotalStats();
 
+    // console.log('Iso: ', covidTotalStats.iso2);
+    // console.log('total: ', covidTotalStats.total);
+
     // сюда передаём название выбранной пользователем страны
     const inputValue = 'Afghanistan';
     const covidPerCountriesStats = await stats.getPerCountryStats(inputValue);
+    console.log(covidPerCountriesStats.countryISO);
+    // console.log(covidPerCountriesStats.countries);
+    console.log(covidPerCountriesStats.countryName);
 
     // общая статистика по миру за всё время
     const covidWorldTimeline = await stats.getWorldTimeline();

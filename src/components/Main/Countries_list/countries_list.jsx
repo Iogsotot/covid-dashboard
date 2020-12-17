@@ -1,5 +1,5 @@
 import React from 'react';
-import './tests-statistic.scss';
+import './countries_list.scss';
 
 function RegionStatistic() {
   const countries = new Array(10).fill('Country');
@@ -11,9 +11,9 @@ function RegionStatistic() {
     </li>
   ));
   return (
-    <div className="tests-statistic">
-      <h4 className="tests-statistic__title">title</h4>
-      <div className="tests-statistic__value">00 000 000</div>
+    <div className="countries_list">
+      <h4 className="countries_list__title">title</h4>
+      <div className="countries_list__value">00 000 000</div>
       <ul className="tests-list">
         { listItem }
       </ul>
