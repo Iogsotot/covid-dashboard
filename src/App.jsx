@@ -1,7 +1,6 @@
 /* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
 import Stats from './components/Stats';
-import Header from './components/Header/header';
 import Main from './components/Main/Main';
 import Footer from './components/Footer/footer';
 import './App.scss';
@@ -56,7 +55,6 @@ class App extends Component {
     // console.log(this.state.countriesList)
     return (
       <div className="App">
-        <Header className="header" />
         <Main
           className="main"
           countriesList={this.state.countriesList}

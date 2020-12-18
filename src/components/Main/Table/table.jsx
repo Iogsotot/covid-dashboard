@@ -13,8 +13,10 @@ class Table extends Component {
           <div className="global-cases">00 000 000</div>
           <div className="global-deaths">00 000 000</div>
           <div className="global-recovered">00 000 000</div>
-          <div className="total-today__toggle">total O~~~| last day</div>
-          <div className="all-per__toggle">all O~~~| per 100'000</div>
+          <div className="global-stats__toggles">
+            <div className="total-today__toggle">All O~~~| Today</div>
+            <div className="all-per__toggle">Absolute O~~~| per 100K</div>
+          </div>
         </div>
         <div className="update-info">
           <h4 className="update-info__title">Last Update at: </h4>
