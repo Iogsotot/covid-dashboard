@@ -97,7 +97,7 @@ const Map = () => {
         id="chartdiv"
         className="map__chartdiv"
         style={{
-          width: '100%', height: '550px',
+          width: '100%', height: '100%',
         }}
       />
     </section>
