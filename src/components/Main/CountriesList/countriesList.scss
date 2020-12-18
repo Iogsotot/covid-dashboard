@@ -1,10 +1,13 @@
 @import "../../../shared/variables";
 
+* {
+  box-sizing: border-box;
+}
 .countries {
   display: flex;
   flex-direction: column;
   margin: 0 0 5px;
-  max-height: calc(100vh - 480px);
+  max-height: calc(100vh - 392px);
 
   border: 1px solid $gray-700;
   background-color: $gray-800;
