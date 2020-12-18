@@ -3,7 +3,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 // import PropTypes from 'prop-types';
-import Table from './Table/Table';
+import Table from './Table/table';
 import Map from './Map';
 import CountriesList from './CountriesList/countriesList';
 import './Main.scss';
