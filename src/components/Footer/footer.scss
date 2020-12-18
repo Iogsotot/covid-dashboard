@@ -1,0 +1,111 @@
+@import "../../shared/variables";
+
+.footer {
+  color: greenyellow;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $gray-800;
+  border-top: 1px solid $black;
+  border-bottom: 1px solid $black;
+  margin-top: auto;
+  padding: 5px 0;
+
+  .footer__title {
+    color: $gray-300;
+  }
+
+  .footer-cols {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    align-items: flex-start;
+    margin: 0 auto;
+
+    .footer__title {
+      margin: 15px 0 5px;
+    }
+
+    .copyright {
+      display: flex;
+      margin: auto 0;
+
+      .footer__title {
+        color: greenyellow;
+      }
+    }
+
+    .students-list {
+      display: flex;
+
+      margin: 0 auto;
+      padding: 0;
+      list-style: none;
+
+      .students__item {
+        margin: 0 30px;
+      }
+
+      &__link {
+        color: $gray-300;
+        text-decoration: none;
+
+        &:hover {
+          color: $gray-100;
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  .icon--github {
+    width: 25px;
+    height: 25px;
+    margin: auto;
+    background: url("../../assets/img/github-logo.svg") no-repeat;
+    background-size: 25px;
+    background-position: center top;
+  }
+
+  .mentor {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    &__link {
+      color: $gray-300;
+      text-decoration: none;
+
+      span {
+        font-size: 0.6rem;
+      }
+
+      &:hover {
+        color: $gray-100;
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .alma-mater {
+    display: flex;
+    justify-content: center;
+    width: 100px;
+    height: 35px;
+    margin: auto 0;
+    border-radius: 5px;
+
+    align-items: center;
+    background-color: $gray-300;
+
+    cursor: pointer;
+    transition: all 300ms;
+
+    &:hover {
+      background-color: $gray-100;
+      transition: all 300ms;
+    }
+  }
+}
