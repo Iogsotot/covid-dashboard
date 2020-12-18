@@ -5,7 +5,7 @@ import './table.scss';
 class Cases extends Component {
 
   render () {
-    // console.log('In table: ', this.props.countriesList);
+    console.log('In table: ', this.props.countriesList);
     return (
     <section className="global-stats">
       <div className="global-stats__data">
