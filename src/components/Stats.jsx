@@ -45,6 +45,7 @@ export default class Stats {
 
     const covidDataPerCountries = {
       countries,
+      countryISO: covidData[countryIndex].countryInfo.iso2,
       countryName: covidData[countryIndex].country,
       flag: covidData[countryIndex].countryInfo.flag,
       cases: covidData[countryIndex].cases,
@@ -73,6 +74,8 @@ export default class Stats {
     const url = this.urls.totalData;
     const covidData = await this.getDataFromUrl(url);
     const TotalCovidData = {
+      // total: covidData,
+      // iso2: covidData.countryInfo.iso2,
       cases: covidData.cases,
       deaths: covidData.deaths,
       recovered: covidData.recovered,
@@ -134,11 +137,6 @@ export default class Stats {
     }
 
     const countryIndex = getCountries().indexOf(countryName); // если нет в массиве, то -1
-    // console.log('++++++++++++++++++++++++++++++++++++++++++++++');
-    // console.log(countryName);
-    // console.log(countryIndex);
-    // console.log(getCountries());
-    // console.log('++++++++++++++++++++++++++++++++++++++++++++++');
 
     const allCountriesTimeline = {
       covidData,

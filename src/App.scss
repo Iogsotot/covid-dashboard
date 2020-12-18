@@ -1,5 +1,7 @@
 @import './shared/variables';
-
+* {
+  box-sizing: border-box;
+}
 .App {
   text-align: center;
   color: $font-color;
@@ -9,4 +11,16 @@
   flex-direction: column;
   align-items: center;
   // justify-content: center;
+}
+
+.header {
+  height: 88px;
+}
+
+.main {
+  height: calc(100vh - 188px);
+}
+
+.footer {
+  height: 100px;
 }
