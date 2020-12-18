@@ -22,9 +22,9 @@ class App extends Component {
     // сюда передаём название выбранной пользователем страны
     const inputValue = 'Afghanistan';
     const covidPerCountriesStats = await stats.getPerCountryStats(inputValue);
-    console.log(covidPerCountriesStats.countryISO);
+    // console.log(covidPerCountriesStats.countryISO);
     // console.log(covidPerCountriesStats.countries);
-    console.log(covidPerCountriesStats.countryName);
+    // console.log(covidPerCountriesStats.countryName);
 
     // общая статистика по миру за всё время
     const covidWorldTimeline = await stats.getWorldTimeline();
@@ -111,8 +111,7 @@ class App extends Component {
     }
   }
   render() {
-    console.log(this.props);
-    // this.setState({ countriesList: covidPerCountriesStats.countries })
+    // console.log(this.props);
     // console.log(this.state.countriesList)
     return (
       <div className="App">

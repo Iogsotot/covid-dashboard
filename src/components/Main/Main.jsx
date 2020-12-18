@@ -3,7 +3,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 // import PropTypes from 'prop-types';
-import Table from './Table/table';
+import Table from './Table/Table';
 import Map from './Map';
 import CountriesList from './CountriesList/countriesList';
 import './Main.scss';
@@ -16,7 +16,7 @@ class Main extends React.PureComponent {
         <Map className="map" />
         <div className="tables">
           <Table countriesList={this.props.countriesList} />
-          <CountriesList />
+          <CountriesList countriesList={this.props.countriesList} />
         </div>
       </main>
     );
