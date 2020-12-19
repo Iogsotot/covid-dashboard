@@ -13,22 +13,22 @@ class Main extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      absolutePer100K: false,
-      allToday: false,
+      isPer100K: false, // isPer100K
+      isToday: false, // isToday
     };
   }
 
   handleSwitchAbsolutePer100K(value) {
     console.log('handleSwitchAbsolutePer100K', value);
     this.setState({
-      absolutePer100K: value,
+      isPer100K: value,
     });
   }
 
   handleSwitchAllToday(value) {
     console.log('handleSwitchAllToday', value);
     this.setState({
-      allToday: value,
+      isToday: value,
     });
   }
 
@@ -37,8 +37,8 @@ class Main extends React.Component {
       <main className="main">
         <Map
           className="map"
-          absolutePer100K={this.state.absolutePer100K}
-          allToday={this.state.allToday}
+          isPer100K={this.state.isPer100K}
+          isToday={this.state.isToday}
           handleSwitchAbsolutePer100K={(value) => this.handleSwitchAbsolutePer100K(value)}
           handleSwitchAllToday={(value) => this.handleSwitchAllToday(value)}
         />

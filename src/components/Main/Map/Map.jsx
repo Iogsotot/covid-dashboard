@@ -40,7 +40,32 @@ class Map extends Component {
     this.createMap();
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(oldProps) {
+    const { isPer100K, isToday } = this.props;
+    // const {
+    //   isPer100K,
+    //   isToday,
+    // } = this.props;
+
+    // if (!isPer100K) {
+    //   if (!isToday) {
+    //     this.setState({
+    //       dataField: 'cases',
+    //     });
+    //   } else {
+    //     this.setState({
+    //       dataField: 'todayCases',
+    //     });
+    //   }
+    // }
+    if (oldProps.isPer100K !== isPer100K) {
+      console.log('componentDidUpdate prop updated', isPer100K);
+      // this.map.propertyFields.data = this.state.paddingRight;
+    }
+    if (oldProps.isToday !== isToday) {
+      console.log('componentDidUpdate prop updated', isToday);
+      // this.map.propertyFields.data = this.state.paddingRight;
+    }
   }
 
   componentWillUnmount() {
@@ -50,7 +75,11 @@ class Map extends Component {
   }
 
   createMap() {
-    const { countryData, handleSwitchAbsolutePer100K, handleSwitchAllToday } = this.props;
+    const {
+      countryData,
+      handleSwitchAbsolutePer100K,
+      handleSwitchAllToday,
+    } = this.props;
 
     const map = am4core.create('chartdiv', am4maps.MapChart);
     // eslint-disable-next-line camelcase

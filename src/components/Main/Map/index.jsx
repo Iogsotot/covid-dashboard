@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import Map from './Map';
 
@@ -7,7 +8,6 @@ class MapContainer extends React.PureComponent {
 
     this.state = {
       isLoaded: false,
-      dataField: 'cases',
       countryData: [],
     };
   }
@@ -17,21 +17,17 @@ class MapContainer extends React.PureComponent {
   }
 
   getCountriesData() {
-    const { dataField } = this.state;
-
     fetch('https://corona.lmao.ninja/v2/countries')
       .then((res) => res.json())
       .then((data) => {
         const countryData = [];
 
         data.forEach((el) => {
-          // filter items with no data
-          if (el[dataField] > 0) {
-            countryData.push({
-              id: el.countryInfo.iso2,
-              value: el[dataField],
-            });
-          }
+          countryData.push({
+            id: el.countryInfo.iso2,
+            value: el.cases,
+            ...el,
+          });
         });
 
         this.setState({
@@ -48,8 +44,12 @@ class MapContainer extends React.PureComponent {
 
   render() {
     const { isLoaded, error, countryData } = this.state;
-    // eslint-disable-next-line react/prop-types
-    const { handleSwitchAbsolutePer100K, handleSwitchAllToday } = this.props;
+    const {
+      isPer100K,
+      isToday,
+      handleSwitchAbsolutePer100K,
+      handleSwitchAllToday,
+    } = this.props;
 
     if (error) {
       return (
@@ -66,6 +66,8 @@ class MapContainer extends React.PureComponent {
           {isLoaded ? (
             <Map
               countryData={countryData}
+              isPer100K={isPer100K}
+              isToday={isToday}
               handleSwitchAbsolutePer100K={handleSwitchAbsolutePer100K}
               handleSwitchAllToday={handleSwitchAllToday}
             />
