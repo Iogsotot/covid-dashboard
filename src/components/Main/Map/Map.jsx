@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import * as am4core from '@amcharts/amcharts4/core';
 import * as am4maps from '@amcharts/amcharts4/maps';
 import * as am4charts from '@amcharts/amcharts4/charts';
@@ -35,25 +36,11 @@ const colors = {
 am4core.useTheme(am4themes_animated);
 
 class Map extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      countryData: [],
-    };
-  }
-
   componentDidMount() {
-    // eslint-disable-next-line react/prop-types
-    const { countryData } = this.props;
-
-    this.setState({
-      countryData,
-    });
+    this.createMap();
   }
 
   componentDidUpdate() {
-    this.createMap();
   }
 
   componentWillUnmount() {
@@ -63,9 +50,7 @@ class Map extends Component {
   }
 
   createMap() {
-    const { countryData } = this.state;
-    // eslint-disable-next-line react/prop-types
-    const { handleSwitchAbsolutePer100K, handleSwitchAllToday } = this.props;
+    const { countryData, handleSwitchAbsolutePer100K, handleSwitchAllToday } = this.props;
 
     const map = am4core.create('chartdiv', am4maps.MapChart);
     // eslint-disable-next-line camelcase

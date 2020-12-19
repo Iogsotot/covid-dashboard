@@ -9,21 +9,27 @@ import CountriesList from './CountriesList/countriesList';
 import './Main.scss';
 // import { render } from '@testing-library/react';
 
-class Main extends React.PureComponent {
-  // eslint-disable-next-line class-methods-use-this
-  handleSwitchAbsolutePer100K(value) {
-    // do magic here
-    // maybe call some method that change state inside your component
-    // please don't set state here
-    console.log('handleSwitchAbsolutePer100K', value);
+class Main extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      absolutePer100K: false,
+      allToday: false,
+    };
   }
 
-  // eslint-disable-next-line class-methods-use-this
+  handleSwitchAbsolutePer100K(value) {
+    console.log('handleSwitchAbsolutePer100K', value);
+    this.setState({
+      absolutePer100K: value,
+    });
+  }
+
   handleSwitchAllToday(value) {
-    // do magic here
-    // maybe call some method that change state inside your component
-    // please don't set state here
     console.log('handleSwitchAllToday', value);
+    this.setState({
+      allToday: value,
+    });
   }
 
   render() {
@@ -31,6 +37,8 @@ class Main extends React.PureComponent {
       <main className="main">
         <Map
           className="map"
+          absolutePer100K={this.state.absolutePer100K}
+          allToday={this.state.allToday}
           handleSwitchAbsolutePer100K={(value) => this.handleSwitchAbsolutePer100K(value)}
           handleSwitchAllToday={(value) => this.handleSwitchAllToday(value)}
         />
