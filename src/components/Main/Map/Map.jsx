@@ -6,7 +6,6 @@ import am4geodata_worldLow from '@amcharts/amcharts4-geodata/worldLow';
 // eslint-disable-next-line camelcase
 import am4themes_animated from '@amcharts/amcharts4/themes/animated';
 import React, { Component } from 'react';
-// import Stats from '../Stats';
 import './Map.scss';
 
 const COLOR_PRIMARY = '#ff0000';
@@ -38,14 +37,19 @@ am4core.useTheme(am4themes_animated);
 class Map extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
-      isLoaded: false,
       countryData: [],
     };
   }
 
   componentDidMount() {
-    this.getCountriesData();
+    // eslint-disable-next-line react/prop-types
+    const { countryData } = this.props;
+
+    this.setState({
+      countryData,
+    });
   }
 
   componentDidUpdate() {
@@ -56,34 +60,6 @@ class Map extends Component {
     if (this.map) {
       this.map.dispose();
     }
-  }
-
-  getCountriesData() {
-    fetch('https://corona.lmao.ninja/v2/countries')
-      .then((res) => res.json())
-      .then((data) => {
-        const countryDataFromAPI = [];
-
-        data.forEach((el) => {
-          // filter items with no data
-          if (el.cases > 0) {
-            countryDataFromAPI.push({
-              id: el.countryInfo.iso2,
-              value: el.cases,
-            });
-          }
-        });
-
-        this.setState({
-          isLoaded: true,
-          countryData: countryDataFromAPI,
-        });
-      }, (error) => {
-        this.setState({
-          isLoaded: true,
-          error,
-        });
-      });
   }
 
   createMap() {
@@ -120,6 +96,11 @@ class Map extends Component {
     absolutePerCapitaSwitch.rightLabel.interactionsEnabled = true;
     absolutePerCapitaSwitch.rightLabel.tooltipText = 'When calculating max value, countries with population less than 100.000 are not included.';
     absolutePerCapitaSwitch.verticalCenter = 'top';
+
+    absolutePerCapitaSwitch.events.on('toggled', () => {
+      console.log('absolutePerCapitaSwitch', absolutePerCapitaSwitch.isActive);
+      // setAbsolutePerCapita(absolutePerCapitaSwitch.isActive);
+    });
 
     // switch between All and today cases
     const allTodaySwitch = map.createChild(am4core.SwitchButton);
@@ -315,31 +296,13 @@ class Map extends Component {
   }
 
   render() {
-    const { isLoaded, error } = this.state;
-
-    if (error) {
-      return (
-        <div>
-          Error:
-          {error.message}
-        </div>
-      );
-    }
     return (
-      isLoaded
-      && (
-        <section className="map">
-          <div
-            id="chartdiv"
-            className="map__chartdiv"
-            style={{
-              width: '100%', height: '100%', minHeight: '500px',
-            }}
-          >
-            Loading...
-          </div>
-        </section>
-      )
+      <div
+        id="chartdiv"
+        style={{
+          width: '100%', height: '100%', minHeight: '500px',
+        }}
+      />
     );
   }
 }
