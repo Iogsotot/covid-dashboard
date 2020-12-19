@@ -6,11 +6,10 @@ const Footer = () => (
   <footer className="footer">
     <div className="section-inner">
 
-
       <nav className="footer-cols">
         <div className="copyright">
           <h4 className="footer__title">
-            &copy; 2020 Covid Dashboard (ссылка на API ?)
+            &copy; 2020 Covid Dashboard
           </h4>
         </div>
         <div className="students">
