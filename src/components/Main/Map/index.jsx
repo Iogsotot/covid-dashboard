@@ -4,20 +4,17 @@ import Map from './Map';
 class MapContainer extends React.PureComponent {
   constructor(props) {
     super(props);
+
     this.state = {
       isLoaded: false,
       dataField: 'cases',
-      // countryData: [],
+      countryData: [],
     };
   }
 
   componentDidMount() {
     this.getCountriesData();
   }
-
-  // getDataByField(field) {
-
-  // }
 
   getCountriesData() {
     const { dataField } = this.state;
@@ -51,6 +48,8 @@ class MapContainer extends React.PureComponent {
 
   render() {
     const { isLoaded, error, countryData } = this.state;
+    // eslint-disable-next-line react/prop-types
+    const { handleSwitchAbsolutePer100K, handleSwitchAllToday } = this.props;
 
     if (error) {
       return (
@@ -64,7 +63,13 @@ class MapContainer extends React.PureComponent {
     return (
       <section className="map">
         <div className="map__chrtdiv">
-          {isLoaded ? <Map countryData={countryData} /> : 'Loading...'}
+          {isLoaded ? (
+            <Map
+              countryData={countryData}
+              handleSwitchAbsolutePer100K={handleSwitchAbsolutePer100K}
+              handleSwitchAllToday={handleSwitchAllToday}
+            />
+          ) : 'Loading...'}
         </div>
       </section>
     );

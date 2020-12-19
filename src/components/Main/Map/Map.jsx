@@ -64,6 +64,8 @@ class Map extends Component {
 
   createMap() {
     const { countryData } = this.state;
+    // eslint-disable-next-line react/prop-types
+    const { handleSwitchAbsolutePer100K, handleSwitchAllToday } = this.props;
 
     const map = am4core.create('chartdiv', am4maps.MapChart);
     // eslint-disable-next-line camelcase
@@ -98,8 +100,9 @@ class Map extends Component {
     absolutePerCapitaSwitch.verticalCenter = 'top';
 
     absolutePerCapitaSwitch.events.on('toggled', () => {
-      console.log('absolutePerCapitaSwitch', absolutePerCapitaSwitch.isActive);
+      // console.log('absolutePerCapitaSwitch', absolutePerCapitaSwitch.isActive);
       // setAbsolutePerCapita(absolutePerCapitaSwitch.isActive);
+      handleSwitchAbsolutePer100K(absolutePerCapitaSwitch.isActive);
     });
 
     // switch between All and today cases
@@ -112,6 +115,9 @@ class Map extends Component {
     allTodaySwitch.rightLabel.text = 'Today';
     allTodaySwitch.rightLabel.interactionsEnabled = true;
     allTodaySwitch.verticalCenter = 'top';
+    allTodaySwitch.events.on('toggled', () => {
+      handleSwitchAllToday(allTodaySwitch.isActive);
+    });
 
     map.tooltip = new am4core.Tooltip();
     map.tooltip.background.fill = am4core.color('#000000');
