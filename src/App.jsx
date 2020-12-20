@@ -1,10 +1,11 @@
-/* eslint-disable no-console */
+/* eslint-disable */
 // import React, { Component } from 'react';
 // import Stats from './components/Stats';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, lazy, Suspense } from 'react';
 import axios from 'axios';
-import Main from './components/Main/Main';
-import Footer from './components/Footer/footer';
+// import Main from './components/Main/Main';
+// import Footer from './components/Footer/footer';
+import Loader from './components/Loader/loader';
 import './App.scss';
 
 const App = () => {
@@ -19,10 +20,20 @@ const App = () => {
   console.log(perCountryData);
   console.log('totalData', totalData);
   console.log(worldTimeline);
+
+  const Main = lazy(() => import('./components/Main/Main'))
+  const Footer = lazy(() => import('./components/Footer/footer'))
+
   return (
     <div className="App">
-      <Main perCountryData={perCountryData} totalData={totalData} />
-      <Footer />
+      {/* <Main perCountryData={perCountryData} totalData={totalData} />
+      <Footer /> */}
+      <Suspense fallback={<Loader />}>
+        <Main perCountryData={perCountryData} totalData={totalData} />
+        <Suspense fallback={<Loader />}>
+          <Footer />
+        </Suspense>
+      </Suspense>
     </div>
   );
 };
