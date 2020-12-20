@@ -7,15 +7,20 @@ const StatusToggle = (props) => {
   const firstDescriptionStatus = () => !status ? 'chosen' : 'not'
   const secondDescriptionStatus = () => status ? 'chosen' : 'not'
   return (
-    <div className={props.className, 'status-toggle'}
-      onClick={() => setStatus(status = !status)}>
-      <span className={firstDescriptionStatus()}>{props.statusFirst}</span>
+    <div className={props.className, 'status-toggle'}>
+      <span className={firstDescriptionStatus()}
+      onClick={() => setStatus(status !== status)}>
+        {props.statusFirst}
+      </span>
       <label className="switch">
         <input type="checkbox" checked={status}
         onClick={() => setStatus(status = !status)} />
         <span className="slider round"></span>
       </label>
-      <span className={secondDescriptionStatus()}>{props.statusSecond}</span>
+      <span className={secondDescriptionStatus()}
+        onClick={() => setStatus(status === status)}>
+        {props.statusSecond}
+      </span>
     </div>
   )
 };
