@@ -3,7 +3,7 @@ import React from 'react';
 import StatusToggles from '../../StatusToggles'
 import './countriesList.scss';
 
-const RegionStatistic = ({ perCountryData }) => {
+const RegionStatistic = ({ perCountryData, setStatusToggle, statusToggle, statusTogglePopulation, setStatusTogglePopulation }) => {
   const listItem = perCountryData
   .sort((a, b) => b.cases - a.cases)
   .map((it, i) => (
@@ -19,7 +19,12 @@ const RegionStatistic = ({ perCountryData }) => {
       <ul className="countries__list">
         { listItem }
       </ul>
-      <StatusToggles />
+      <StatusToggles
+        setStatusToggle={setStatusToggle}
+        statusToggle={statusToggle}
+        statusTogglePopulation={statusTogglePopulation}
+        setStatusTogglePopulation={setStatusTogglePopulation}
+      />
       {/* <div className="global-stats__toggles">
         <div className="total-today__toggle">
           All

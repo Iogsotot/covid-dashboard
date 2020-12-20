@@ -1,7 +1,7 @@
-/* eslint-disable no-console */
+/* eslint-disable */
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/prop-types */
-import React from 'react';
+import React, { useState } from 'react';
 /* eslint-disable no-console */
 // import PropTypes from 'prop-types';
 import Map from './Map';
@@ -10,16 +10,31 @@ import Table from './Table/table';
 import './Main.scss';
 // import { render } from '@testing-library/react';
 
-const Main = ({ perCountryData, totalData }) => (
-  <main className="main">
-    <h1 className="visually-hidden">Covid-19 Dasboard</h1>
-    <Map className="map" />
-    <div className="tables">
-      <Table totalData={totalData} />
-      <CountriesList perCountryData={perCountryData} />
-    </div>
-  </main>
-);
+const Main = ({ perCountryData, totalData }) => {
+  const [statusToggle, setStatusToggle] = useState(false);
+  const [statusTogglePopulation, setStatusTogglePopulation] = useState(false);
+  return (
+    <main className="main">
+      <h1 className="visually-hidden">Covid-19 Dasboard</h1>
+      <Map className="map" />
+      <div className="tables">
+        <Table totalData={totalData}
+          setStatusToggle={setStatusToggle}
+          statusToggle={statusToggle}
+          statusTogglePopulation={statusTogglePopulation}
+          setStatusTogglePopulation={setStatusTogglePopulation}
+        />
+        <CountriesList
+          perCountryData={perCountryData}
+          setStatusToggle={setStatusToggle}
+          statusToggle={statusToggle}
+          statusTogglePopulation={statusTogglePopulation}
+          setStatusTogglePopulation={setStatusTogglePopulation}
+        />
+      </div>
+    </main>
+  );
+};
 // class Main extends React.PureComponent {
 //   render() {
 //     return (

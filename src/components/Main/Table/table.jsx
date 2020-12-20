@@ -4,17 +4,27 @@ import React from 'react';
 import StatusToggles from '../../StatusToggles'
 import './table.scss';
 
-const Table = ({ totalData }) => {
-  console.log('totalData', totalData.active)
+const Table = ({ totalData, setStatusToggle, statusToggle, statusTogglePopulation, setStatusTogglePopulation }) => {
+  const displayCases = () => !statusToggle ? totalData.cases : totalData.todayCases 
+  const displayDeath = () => !statusToggle ? totalData.deaths : totalData.todayDeaths
+  const recovered = () => !statusToggle ? totalData.recovered : totalData.todayRecovered
+  const casesPer100k = () => totalData.casesPerOneMillion / 10
+  const deathPer100k = () => totalData.deathsPerOneMillion / 10
+  const recoveredPer100k = () => totalData.recoveredPerOneMillion / 10
   return (
     <section className="global-stats">
       <div className="global-stats__data">
-        <h3 className="global-stats__title">Global Cases:</h3>
-        <div className="global-cases">{ totalData.cases }</div>
-        <div className="global-deaths">deaths: <span>{ totalData.deaths }</span></div>
-        <div className="global-recovered">recovered: <span>{ totalData.recovered }</span></div>
+        <h3 className="global-stats__title">{!statusToggle ? 'Global Cases:' : 'Today Cases:'}</h3>
+        <div className="global-cases">{!statusTogglePopulation ? displayCases() : casesPer100k() }</div>
+        <div className="global-deaths">deaths: <span>{!statusTogglePopulation ? displayDeath() : deathPer100k()}</span></div>
+        <div className="global-recovered">recovered: <span>{!statusTogglePopulation ? recovered() : recoveredPer100k()}</span></div>
         <div className="global-stats__toggles">
-          <StatusToggles />
+          <StatusToggles
+            setStatusToggle={setStatusToggle}
+            statusToggle={statusToggle}
+            statusTogglePopulation={statusTogglePopulation}
+            setStatusTogglePopulation={setStatusTogglePopulation}
+          />
         </div>
         <div className="update-info">
           <h4 className="update-info__title">Last Update at: </h4>
