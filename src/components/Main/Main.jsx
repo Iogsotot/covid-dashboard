@@ -13,11 +13,12 @@ const Main = ({ perCountryData, totalData }) => {
       <h1 className="visually-hidden">Covid-19 Dasboard</h1>
       <Map
         className="map"
+        perCountryData={perCountryData}
         // isPer100K={this.state.isPer100K}
         // isToday={this.state.isToday}
         isPer100K={statusTogglePopulation}
         isToday={statusToggle}
-        handleSwitchAbsolutePer100K={setStatusTogglePopulation}
+        handleSwitchAbsolutePer100K={(value) => setStatusTogglePopulation(value)}
         handleSwitchAllToday={setStatusToggle}
       // handleSwitchAbsolutePer100K={(value) => this.handleSwitchAbsolutePer100K(value)}
       // handleSwitchAllToday={(value) => this.handleSwitchAllToday(value)}
