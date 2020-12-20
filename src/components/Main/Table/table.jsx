@@ -1,6 +1,7 @@
 /* eslint-disable */
 // import React, { Component } from 'react';
 import React from 'react';
+import StatusToggles from '../../StatusToggles'
 import './table.scss';
 
 const Table = ({ totalData }) => {
@@ -13,15 +14,7 @@ const Table = ({ totalData }) => {
         <div className="global-deaths">deaths: <span>{ totalData.deaths }</span></div>
         <div className="global-recovered">recovered: <span>{ totalData.recovered }</span></div>
         <div className="global-stats__toggles">
-          <div className="total-today__toggle">
-            All
-              <input type="checkbox" />
-            Today
-          </div>
-          <div className="all-per__toggle">
-            Absolute
-              <input type="checkbox" />
-            per 100K</div>
+          <StatusToggles />
         </div>
         <div className="update-info">
           <h4 className="update-info__title">Last Update at: </h4>

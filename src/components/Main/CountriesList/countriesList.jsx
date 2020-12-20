@@ -1,5 +1,6 @@
 /* eslint-disable */
 import React from 'react';
+import StatusToggles from '../../StatusToggles'
 import './countriesList.scss';
 
 const RegionStatistic = ({ perCountryData }) => {
@@ -18,7 +19,8 @@ const RegionStatistic = ({ perCountryData }) => {
       <ul className="countries__list">
         { listItem }
       </ul>
-      <div className="global-stats__toggles">
+      <StatusToggles />
+      {/* <div className="global-stats__toggles">
         <div className="total-today__toggle">
           All
             <input type="checkbox" />
@@ -28,7 +30,7 @@ const RegionStatistic = ({ perCountryData }) => {
           Absolute 
             <input type="checkbox" />
           per 100K</div>
-      </div>
+      </div> */}
     </div>
   );
 };
