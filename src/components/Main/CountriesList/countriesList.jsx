@@ -4,18 +4,19 @@ import StatusToggles from '../../StatusToggles'
 import './countriesList.scss';
 
 const RegionStatistic = ({ perCountryData, setStatusToggle, statusToggle, statusTogglePopulation, setStatusTogglePopulation }) => {
+  console.log(perCountryData)
   const listItem = perCountryData
   .sort((a, b) => b.cases - a.cases)
   .map((it, i) => (
     <li className="countries__item" key={i.toString()}>
-      <span className="item__value">{ it.cases }</span>
+      <span className="item__value">{!statusToggle ? it.cases : it.todayCases }</span>
       <span className="item__name">{it.country}</span>
     </li>
   ));
   return (
     <div className="countries">
       <input className="country-search" type="text" placeholder="country..." />
-      <h4 className="countries__title">all stats by country</h4>
+      <h4 className="countries__title">All stats by country</h4>
       <ul className="countries__list">
         { listItem }
       </ul>
