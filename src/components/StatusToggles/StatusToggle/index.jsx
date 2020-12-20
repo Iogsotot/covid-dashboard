@@ -1,26 +1,27 @@
 /* eslint-disable */
-import React from 'react';
+import React, {useCallback} from 'react';
 import './index.scss';
 
-const StatusToggle = (props) => {
-  let [status, setStatus] = React.useState(false);
-  const firstDescriptionStatus = () => !status ? 'chosen' : 'not'
-  const secondDescriptionStatus = () => status ? 'chosen' : 'not'
+const StatusToggle = ({ setStatusToggle, statusToggle, className, statusFirst, statusSecond, statusTogglePopulation, setStatusTogglePopulation }) => {
+  const onChangeToggle = () => {
+    if (typeof statusToggle !== 'undefined') setStatusToggle(prev => !prev)
+    if (typeof setStatusTogglePopulation !== 'undefined') setStatusTogglePopulation(prev => !prev)
+  }
   return (
-    <div className={props.className, 'status-toggle'}>
-      <span className={firstDescriptionStatus()}
-      onClick={() => setStatus(status !== status)}>
-        {props.statusFirst}
-      </span>
+    <div className={className, 'status-toggle'}>
+      <button type="button" onClick={onChangeToggle}>
+        {statusFirst}
+      </button>
       <label className="switch">
-        <input type="checkbox" checked={status}
-        onClick={() => setStatus(status = !status)} />
-        <span className="slider round"></span>
+        <input type="checkbox" 
+        checked={statusToggle || statusTogglePopulation}
+        onClick={onChangeToggle}
+      />
+      <span className="slider round" />
       </label>
-      <span className={secondDescriptionStatus()}
-        onClick={() => setStatus(status === status)}>
-        {props.statusSecond}
-      </span>
+      <button type="button" onClick={onChangeToggle}>
+        {statusSecond}
+      </button>
     </div>
   )
 };

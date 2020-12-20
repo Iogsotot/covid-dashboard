@@ -3,16 +3,22 @@ import React from 'react';
 import StatusToggle from './StatusToggle';
 import './index.scss';
 
-const StatusToggles = () => (
+const StatusToggles = ({ setStatusToggle, statusToggle, statusTogglePopulation, setStatusTogglePopulation }) => (
   <div className="global-stats__toggles">
-    <StatusToggle 
+    <StatusToggle
     className={'total-today__toggle'}
     statusFirst={'All'} 
-    statusSecond={'Today'} />
+    statusSecond={'Today'}
+    setStatusToggle={setStatusToggle}
+    statusToggle={statusToggle}
+    />
     <StatusToggle 
     className={'all-per__toggle'}
     statusFirst={'Absolute'} 
-    statusSecond={'per 100K'} />
+    statusSecond={'Per 100K'}
+    statusTogglePopulation={statusTogglePopulation}
+    setStatusTogglePopulation={setStatusTogglePopulation}
+    />
   </div>
 );
 
