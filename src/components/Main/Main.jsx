@@ -1,14 +1,9 @@
 /* eslint-disable */
-/* eslint-disable react/destructuring-assignment */
-/* eslint-disable react/prop-types */
 import React, { useState } from 'react';
-/* eslint-disable no-console */
-// import PropTypes from 'prop-types';
 import Map from './Map';
 import CountriesList from './CountriesList/countriesList';
 import Table from './Table/table';
 import './Main.scss';
-// import { render } from '@testing-library/react';
 
 const Main = ({ perCountryData, totalData }) => {
   const [statusToggle, setStatusToggle] = useState(false);
@@ -16,7 +11,18 @@ const Main = ({ perCountryData, totalData }) => {
   return (
     <main className="main">
       <h1 className="visually-hidden">Covid-19 Dasboard</h1>
-      <Map className="map" />
+      <Map
+        className="map"
+        // isPer100K={this.state.isPer100K}
+        // isToday={this.state.isToday}
+        isPer100K={statusTogglePopulation}
+        isToday={statusToggle}
+        handleSwitchAbsolutePer100K={setStatusTogglePopulation}
+        handleSwitchAllToday={setStatusToggle}
+      // handleSwitchAbsolutePer100K={(value) => this.handleSwitchAbsolutePer100K(value)}
+      // handleSwitchAllToday={(value) => this.handleSwitchAllToday(value)}
+
+      />
       <div className="tables">
         <Table totalData={totalData}
           setStatusToggle={setStatusToggle}
@@ -35,6 +41,7 @@ const Main = ({ perCountryData, totalData }) => {
     </main>
   );
 };
+
 // class Main extends React.PureComponent {
 //   render() {
 //     return (

@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import * as am4core from '@amcharts/amcharts4/core';
 import * as am4maps from '@amcharts/amcharts4/maps';
 import * as am4charts from '@amcharts/amcharts4/charts';
@@ -6,7 +7,7 @@ import am4geodata_worldLow from '@amcharts/amcharts4-geodata/worldLow';
 // eslint-disable-next-line camelcase
 import am4themes_animated from '@amcharts/amcharts4/themes/animated';
 import React, { Component } from 'react';
-// import Stats from '../Stats';
+// import Loader from '../../Loader/loader';
 import './Map.scss';
 
 const COLOR_PRIMARY = '#ff0000';
@@ -36,20 +37,36 @@ const colors = {
 am4core.useTheme(am4themes_animated);
 
 class Map extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isLoaded: false,
-      countryData: [],
-    };
-  }
-
   componentDidMount() {
-    this.getCountriesData();
+    this.createMap();
   }
 
-  componentDidUpdate() {
-    this.createMap();
+  componentDidUpdate(oldProps) {
+    const { isPer100K, isToday } = this.props;
+    // const {
+    //   isPer100K,
+    //   isToday,
+    // } = this.props;
+
+    // if (!isPer100K) {
+    //   if (!isToday) {
+    //     this.setState({
+    //       dataField: 'cases',
+    //     });
+    //   } else {
+    //     this.setState({
+    //       dataField: 'todayCases',
+    //     });
+    //   }
+    // }
+    if (oldProps.isPer100K !== isPer100K) {
+      console.log('componentDidUpdate prop updated', isPer100K);
+      // this.map.propertyFields.data = this.state.paddingRight;
+    }
+    if (oldProps.isToday !== isToday) {
+      console.log('componentDidUpdate prop updated', isToday);
+      // this.map.propertyFields.data = this.state.paddingRight;
+    }
   }
 
   componentWillUnmount() {
@@ -58,36 +75,12 @@ class Map extends Component {
     }
   }
 
-  getCountriesData() {
-    fetch('https://corona.lmao.ninja/v2/countries')
-      .then((res) => res.json())
-      .then((data) => {
-        const countryDataFromAPI = [];
-
-        data.forEach((el) => {
-          // filter items with no data
-          if (el.cases > 0) {
-            countryDataFromAPI.push({
-              id: el.countryInfo.iso2,
-              value: el.cases,
-            });
-          }
-        });
-
-        this.setState({
-          isLoaded: true,
-          countryData: countryDataFromAPI,
-        });
-      }, (error) => {
-        this.setState({
-          isLoaded: true,
-          error,
-        });
-      });
-  }
-
   createMap() {
-    const { countryData } = this.state;
+    const {
+      countryData,
+      handleSwitchAbsolutePer100K,
+      handleSwitchAllToday,
+    } = this.props;
 
     const map = am4core.create('chartdiv', am4maps.MapChart);
     // eslint-disable-next-line camelcase
@@ -121,6 +114,12 @@ class Map extends Component {
     absolutePerCapitaSwitch.rightLabel.tooltipText = 'When calculating max value, countries with population less than 100.000 are not included.';
     absolutePerCapitaSwitch.verticalCenter = 'top';
 
+    absolutePerCapitaSwitch.events.on('toggled', () => {
+      // console.log('absolutePerCapitaSwitch', absolutePerCapitaSwitch.isActive);
+      // setAbsolutePerCapita(absolutePerCapitaSwitch.isActive);
+      handleSwitchAbsolutePer100K(absolutePerCapitaSwitch.isActive);
+    });
+
     // switch between All and today cases
     const allTodaySwitch = map.createChild(am4core.SwitchButton);
     allTodaySwitch.align = 'right';
@@ -131,6 +130,9 @@ class Map extends Component {
     allTodaySwitch.rightLabel.text = 'Today';
     allTodaySwitch.rightLabel.interactionsEnabled = true;
     allTodaySwitch.verticalCenter = 'top';
+    allTodaySwitch.events.on('toggled', () => {
+      handleSwitchAllToday(allTodaySwitch.isActive);
+    });
 
     map.tooltip = new am4core.Tooltip();
     map.tooltip.background.fill = am4core.color('#000000');
@@ -315,31 +317,13 @@ class Map extends Component {
   }
 
   render() {
-    const { isLoaded, error } = this.state;
-
-    if (error) {
-      return (
-        <div>
-          Error:
-          {error.message}
-        </div>
-      );
-    }
     return (
-      isLoaded
-      && (
-        <section className="map">
-          <div
-            id="chartdiv"
-            className="map__chartdiv"
-            style={{
-              width: '100%', height: '100%', minHeight: '500px',
-            }}
-          >
-            Loading...
-          </div>
-        </section>
-      )
+      <div
+        id="chartdiv"
+        style={{
+          width: '100%', height: '100%', minHeight: '500px',
+        }}
+      />
     );
   }
 }
