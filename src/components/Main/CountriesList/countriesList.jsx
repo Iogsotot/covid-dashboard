@@ -1,14 +1,15 @@
-/* eslint-disable react/destructuring-assignment */
+/* eslint-disable */
 import React from 'react';
+import StatusToggles from '../../StatusToggles'
 import './countriesList.scss';
 
-function RegionStatistic() {
-  const countries = new Array(195).fill('Country');
-  const listItem = countries.map((country, index) => (
-    <li className="countries__item" key={index.toString()}>
-      <span className="item__value">00 000 000</span>
-      tests
-      <span className="item__name">{country}</span>
+const RegionStatistic = ({ perCountryData }) => {
+  const listItem = perCountryData
+  .sort((a, b) => b.cases - a.cases)
+  .map((it, i) => (
+    <li className="countries__item" key={i.toString()}>
+      <span className="item__value">{ it.cases }</span>
+      <span className="item__name">{it.country}</span>
     </li>
   ));
   return (
@@ -16,19 +17,22 @@ function RegionStatistic() {
       <input className="country-search" type="text" placeholder="country..." />
       <h4 className="countries__title">all stats by country</h4>
       <ul className="countries__list">
-        {listItem}
+        { listItem }
       </ul>
-      {/* <div className="toggles-wrapper">
-        <button type="button">prev</button>
-        <span>value</span>
-        <button type="button">next</button>
+      <StatusToggles />
+      {/* <div className="global-stats__toggles">
+        <div className="total-today__toggle">
+          All
+            <input type="checkbox" />
+          Today
+        </div>
+        <div className="all-per__toggle">
+          Absolute 
+            <input type="checkbox" />
+          per 100K</div>
       </div> */}
-      <div className="global-stats__toggles">
-        <div className="total-today__toggle">All O~~~| Today</div>
-        <div className="all-per__toggle">Absolute O~~~| per 100K</div>
-      </div>
     </div>
   );
-}
+};
 
 export default RegionStatistic;

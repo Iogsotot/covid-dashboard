@@ -7,6 +7,7 @@ import am4geodata_worldLow from '@amcharts/amcharts4-geodata/worldLow';
 // eslint-disable-next-line camelcase
 import am4themes_animated from '@amcharts/amcharts4/themes/animated';
 import React, { Component } from 'react';
+// import Loader from '../../Loader/loader';
 import './Map.scss';
 
 const COLOR_PRIMARY = '#ff0000';

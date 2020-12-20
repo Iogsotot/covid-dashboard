@@ -34,13 +34,12 @@
     .countries__item {
       line-height: 1.5;
       border-bottom: 1px solid $gray-500;
+      text-align: left;
+      padding-left: 10px;
 
       .item__value {
         margin-right: 5px;
-      }
-
-      .item__name {
-        display: block;
+        color: $red;
       }
     }
   }

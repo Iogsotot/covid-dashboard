@@ -11,6 +11,43 @@
   .global-stats__data {
     margin: 0 0 5px;
   }
+
+  .global-cases {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: $red;
+  }
+
+  .global-deaths {
+    span {
+      font-size: 1.1rem;
+      color: $red;
+    }
+  }
+
+  .global-recovered {
+    span {
+      font-size: 1.1rem;
+      color: $green;
+    }
+  }
   
-  
+  .update-info {
+    margin-top: 10px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    &__title,
+    &__date {
+      margin: 0;
+      line-height: 1.5rem;
+    }
+  }
+
+  &__toggles {
+    margin-top: 10px;
+  }
 }
