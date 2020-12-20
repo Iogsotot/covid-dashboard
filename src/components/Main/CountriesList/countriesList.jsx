@@ -3,7 +3,9 @@ import React from 'react';
 import './countriesList.scss';
 
 const RegionStatistic = ({ perCountryData }) => {
-  const listItem = perCountryData.map((it, i) => (
+  const listItem = perCountryData
+  .sort((a, b) => b.cases - a.cases)
+  .map((it, i) => (
     <li className="countries__item" key={i.toString()}>
       <span className="item__value">{ it.cases }</span>
       <span className="item__name">{it.country}</span>
@@ -18,7 +20,7 @@ const RegionStatistic = ({ perCountryData }) => {
       </ul>
       <div className="global-stats__toggles">
         <div className="total-today__toggle">
-          All 
+          All
             <input type="checkbox" />
           Today
         </div>
