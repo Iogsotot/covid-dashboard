@@ -43,29 +43,14 @@ class Map extends Component {
 
   componentDidUpdate(oldProps) {
     const { isPer100K, isToday } = this.props;
-    // const {
-    //   isPer100K,
-    //   isToday,
-    // } = this.props;
 
-    // if (!isPer100K) {
-    //   if (!isToday) {
-    //     this.setState({
-    //       dataField: 'cases',
-    //     });
-    //   } else {
-    //     this.setState({
-    //       dataField: 'todayCases',
-    //     });
-    //   }
-    // }
     if (oldProps.isPer100K !== isPer100K) {
-      console.log('componentDidUpdate prop updated', isPer100K);
       // this.map.propertyFields.data = this.state.paddingRight;
+      this.absolutePerCapitaSwitch.isActive = isPer100K;
     }
     if (oldProps.isToday !== isToday) {
-      console.log('componentDidUpdate prop updated', isToday);
       // this.map.propertyFields.data = this.state.paddingRight;
+      this.allTodaySwitch.isActive = isToday;
     }
   }
 
@@ -113,12 +98,10 @@ class Map extends Component {
     absolutePerCapitaSwitch.rightLabel.interactionsEnabled = true;
     absolutePerCapitaSwitch.rightLabel.tooltipText = 'When calculating max value, countries with population less than 100.000 are not included.';
     absolutePerCapitaSwitch.verticalCenter = 'top';
-
     absolutePerCapitaSwitch.events.on('toggled', () => {
-      // console.log('absolutePerCapitaSwitch', absolutePerCapitaSwitch.isActive);
-      // setAbsolutePerCapita(absolutePerCapitaSwitch.isActive);
       handleSwitchAbsolutePer100K(absolutePerCapitaSwitch.isActive);
     });
+    this.absolutePerCapitaSwitch = absolutePerCapitaSwitch;
 
     // switch between All and today cases
     const allTodaySwitch = map.createChild(am4core.SwitchButton);
@@ -133,6 +116,7 @@ class Map extends Component {
     allTodaySwitch.events.on('toggled', () => {
       handleSwitchAllToday(allTodaySwitch.isActive);
     });
+    this.allTodaySwitch = allTodaySwitch;
 
     map.tooltip = new am4core.Tooltip();
     map.tooltip.background.fill = am4core.color('#000000');
