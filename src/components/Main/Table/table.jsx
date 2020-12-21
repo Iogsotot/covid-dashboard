@@ -7,7 +7,6 @@ import './table.scss';
 
 const Table = ({ totalData, perCountryData, setStatusToggle, statusToggle, statusTogglePopulation, setStatusTogglePopulation, chosenCountry }) => {
   const [isFullScreen, setIsFullScreen] = React.useState('')
-  console.log('isFullScreen', isFullScreen)
   const title = () =>  {
     if (chosenCountry === 'Global') return !statusToggle ? 'World Global Cases:' : 'World Today Cases:'
     else return !statusToggle ? `${chosenCountry} Global Cases:` : `${chosenCountry} Today Cases:`
@@ -57,7 +56,7 @@ const Table = ({ totalData, perCountryData, setStatusToggle, statusToggle, statu
         </div>
         <div className="update-info">
           <h4 className="update-info__title">Last Update at: </h4>
-          <p className="update-info__date">{`${new Date().getFullYear()} ${new Date().getMonth()} ${new Date().getDate()}`}</p>
+          <p className="update-info__date">{`${new Date().getFullYear()} ${new Date().getMonth()} ${new Date().getDate()}, ${new Date().getHours()}:${new Date().getMinutes() < 10 ? '0' + new Date().getMinutes() : new Date().getMinutes() }`}</p>
         </div>
       </div>
     </section>

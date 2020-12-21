@@ -1,18 +1,32 @@
+@import "../../../shared/variables.scss";
+
 .status-toggle {
     display: flex;
     align-items: center;
     justify-content: center;
-    &:nth-child(2) {
-        margin-bottom: 20px;
-    }
-    &:nth-child(1) {
-        margin-top: 20px;
+    // &:nth-child(2) {
+    //     margin-bottom: 20px;
+    // }
+    // &:nth-child(1) {
+    //     margin-top: 20px;
+    // }
+
+    button {
+        background: none;
+        border: none;
+        color: $gray-600;
+        font-size: .9rem;
+        line-height: 1.5;
+
+        &:hover {
+            color: $gray-400;
+        }
     }
     
-    span {
-        font-size: 1.1rem;
-        line-height: 1.5;
-    }
+    // span {
+    //     font-size: 1.1rem;
+    //     line-height: 1.5;
+    // }
 
     .chosen {
         text-decoration: underline;
@@ -24,8 +38,8 @@
     display: inline-block;
     width: 35px;
     height: 6px;
-    margin-left: 10px;
-    margin-right: 10px;
+    margin-left: 2px;
+    margin-right: 2px;
 }
 
 .switch input {
