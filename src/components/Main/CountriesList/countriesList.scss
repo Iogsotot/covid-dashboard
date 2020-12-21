@@ -32,6 +32,7 @@
     padding-left: 0;
 
     .countries__item {
+      position: relative;
       line-height: 1.5;
       border-bottom: 1px solid $gray-500;
       text-align: left;
@@ -40,6 +41,11 @@
       .item__value {
         margin-right: 5px;
         color: $red;
+      }
+
+      .item__flag {
+        position: absolute;
+        right: 15px;
       }
     }
   }

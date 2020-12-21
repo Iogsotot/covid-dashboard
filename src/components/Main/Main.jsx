@@ -8,6 +8,7 @@ import './Main.scss';
 const Main = ({ perCountryData, totalData }) => {
   const [statusToggle, setStatusToggle] = useState(false);
   const [statusTogglePopulation, setStatusTogglePopulation] = useState(false);
+  const [chosenCountry, setChosenCountry] = useState('Global')
   return (
     <main className="main">
       <h1 className="visually-hidden">Covid-19 Dasboard</h1>
@@ -25,11 +26,14 @@ const Main = ({ perCountryData, totalData }) => {
 
       />
       <div className="tables">
-        <Table totalData={totalData}
+        <Table 
+          totalData={totalData}
+          perCountryData={perCountryData}
           setStatusToggle={setStatusToggle}
           statusToggle={statusToggle}
           statusTogglePopulation={statusTogglePopulation}
           setStatusTogglePopulation={setStatusTogglePopulation}
+          chosenCountry={chosenCountry}
         />
         <CountriesList
           perCountryData={perCountryData}
@@ -37,6 +41,7 @@ const Main = ({ perCountryData, totalData }) => {
           statusToggle={statusToggle}
           statusTogglePopulation={statusTogglePopulation}
           setStatusTogglePopulation={setStatusTogglePopulation}
+          setChosenCountry={setChosenCountry}
         />
       </div>
     </main>
