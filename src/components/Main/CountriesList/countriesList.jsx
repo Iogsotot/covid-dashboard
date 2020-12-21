@@ -1,24 +1,22 @@
 /* eslint-disable */
-import React from 'react';
+import React, { useState } from 'react';
 import StatusToggles from '../../StatusToggles'
 import './countriesList.scss';
 
-const RegionStatistic = ({ perCountryData, setStatusToggle, statusToggle, statusTogglePopulation, setStatusTogglePopulation }) => {
-  console.log(perCountryData)
-  const listItem = perCountryData
-  .sort((a, b) => b.cases - a.cases)
-  .map((it, i) => (
-    <li className="countries__item" key={i.toString()}>
-      <span className="item__value">{!statusToggle ? it.cases : it.todayCases }</span>
-      <span className="item__name">{it.country}</span>
-    </li>
-  ));
+const RegionStatistic = ({ perCountryData, setStatusToggle, statusToggle, statusTogglePopulation, setStatusTogglePopulation, setChosenCountry }) => {
+  perCountryData.sort((a, b) => b.cases - a.cases)
   return (
     <div className="countries">
       <input className="country-search" type="text" placeholder="country..." />
       <h4 className="countries__title">All stats by country</h4>
       <ul className="countries__list">
-        { listItem }
+        {perCountryData.map((it, i) => (
+          <li className="countries__item" onClick={() => setChosenCountry(it.country)} key={i.toString()}>
+            <span className="item__value">{!statusToggle ? it.cases : it.todayCases }</span>
+            <span className="item__name">{it.country}</span>
+            <img src={it.countryInfo.flag} width="25" className="item__flag" />
+          </li>
+        ))}
       </ul>
       <StatusToggles
         setStatusToggle={setStatusToggle}
@@ -26,17 +24,6 @@ const RegionStatistic = ({ perCountryData, setStatusToggle, statusToggle, status
         statusTogglePopulation={statusTogglePopulation}
         setStatusTogglePopulation={setStatusTogglePopulation}
       />
-      {/* <div className="global-stats__toggles">
-        <div className="total-today__toggle">
-          All
-            <input type="checkbox" />
-          Today
-        </div>
-        <div className="all-per__toggle">
-          Absolute 
-            <input type="checkbox" />
-          per 100K</div>
-      </div> */}
     </div>
   );
 };
