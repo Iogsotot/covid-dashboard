@@ -8,9 +8,7 @@ import './Main.scss';
 const Main = ({ perCountryData, totalData }) => {
   const [statusToggle, setStatusToggle] = useState(false);
   const [statusTogglePopulation, setStatusTogglePopulation] = useState(false);
-
   const [chosenCountry, setChosenCountry] = useState('Global')
-  console.log(chosenCountry)
   return (
     <main className="main">
       <h1 className="visually-hidden">Covid-19 Dasboard</h1>
