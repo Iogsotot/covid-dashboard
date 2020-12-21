@@ -17,16 +17,18 @@
         color: $gray-600;
         font-size: .9rem;
         line-height: 1.5;
+        transition: .4s;
+        outline: none;
 
-        &:hover {
+        &:hover,
+        &:focus {
             color: $gray-400;
         }
     }
-    
-    // span {
-    //     font-size: 1.1rem;
-    //     line-height: 1.5;
-    // }
+
+    .active {
+        color: $gray-300;
+    }
 
     .chosen {
         text-decoration: underline;

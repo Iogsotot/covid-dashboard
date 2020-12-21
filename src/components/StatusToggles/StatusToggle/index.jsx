@@ -7,9 +7,11 @@ const StatusToggle = ({ setStatusToggle, statusToggle, className, statusFirst, s
     if (typeof statusToggle !== 'undefined') setStatusToggle(prev => !prev)
     if (typeof setStatusTogglePopulation !== 'undefined') setStatusTogglePopulation(prev => !prev)
   }
+  const statusToggleFirst = () => !statusToggle ? 'active' : ''
+  const statusToggleSecond = () => statusToggle ? 'active' : ''
   return (
     <div className={className, 'status-toggle'}>
-      <button type="button" onClick={onChangeToggle}>
+      <button className={statusToggleFirst()} type="button" onClick={onChangeToggle}>
         {statusFirst}
       </button>
       <label className="switch">
@@ -19,7 +21,7 @@ const StatusToggle = ({ setStatusToggle, statusToggle, className, statusFirst, s
       />
       <span className="slider round" />
       </label>
-      <button type="button" onClick={onChangeToggle}>
+      <button className={statusToggleSecond()} type="button" onClick={onChangeToggle}>
         {statusSecond}
       </button>
     </div>
