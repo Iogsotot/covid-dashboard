@@ -31,6 +31,13 @@
     list-style: none;
     padding-left: 0;
 
+    .countries__item.active {
+      .item__name {
+        font-weight: 500;
+        color: $gray-100;
+      }
+    }
+
     .countries__item {
       position: relative;
       line-height: 1.5;
@@ -46,6 +53,8 @@
       .item__flag {
         position: absolute;
         right: 15px;
+        top: 50%;
+        transform: translate(0, -50%);
       }
     }
   }
