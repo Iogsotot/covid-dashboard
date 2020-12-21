@@ -1,6 +1,7 @@
 @import "../../../shared/variables";
 
 .global-stats {
+  position: relative;
   margin: 5px 0;
 
   .global-stats__data, .update-info {
@@ -49,5 +50,42 @@
 
   &__toggles {
     margin-top: 10px;
+  }
+}
+
+.full-screen.global-stats {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 1000;
+
+  .global-stats__data {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .global-stats__title {
+    font-size: 2rem;
+  }
+
+  .global-cases {
+    font-size: 2rem;
+  }
+
+  .global-deaths {
+    span {
+      font-size: 1.4rem;
+    }
+  }
+
+  .global-recovered {
+    span {
+      font-size: 1.4rem;
+    }
   }
 }

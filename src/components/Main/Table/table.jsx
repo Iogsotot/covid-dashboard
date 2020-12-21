@@ -2,9 +2,12 @@
 // import React, { Component } from 'react';
 import React from 'react';
 import StatusToggles from '../../StatusToggles'
+import FullScreenToggle from '../../FullScreenToggle'
 import './table.scss';
 
 const Table = ({ totalData, perCountryData, setStatusToggle, statusToggle, statusTogglePopulation, setStatusTogglePopulation, chosenCountry }) => {
+  const [isFullScreen, setIsFullScreen] = React.useState('')
+  console.log('isFullScreen', isFullScreen)
   const title = () =>  {
     if (chosenCountry === 'Global') return !statusToggle ? 'World Global Cases:' : 'World Today Cases:'
     else return !statusToggle ? `${chosenCountry} Global Cases:` : `${chosenCountry} Today Cases:`
@@ -35,7 +38,10 @@ const Table = ({ totalData, perCountryData, setStatusToggle, statusToggle, statu
     else return chosenCountryData.recoveredPerOneMillion / 10
   }
   return (
-    <section className="global-stats">
+    <section className={`${isFullScreen} global-stats`}>
+      <FullScreenToggle
+        setIsFullScreen={setIsFullScreen}
+      />
       <div className="global-stats__data">
         <h3 className="global-stats__title">{title()}</h3>
         <div className="global-cases">{!statusTogglePopulation ? displayCases() : casesPer100k() }</div>

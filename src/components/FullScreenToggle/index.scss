@@ -1,0 +1,21 @@
+@import "../../shared/variables";
+
+.full-screen-toggle {
+    width: 20px;
+    height: 20px;
+    background-color: red;
+    background: url("../../assets/img/expand-3.svg");
+    border: none;
+    opacity: .6;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+
+    &:hover {
+        opacity: 1;
+        width: 25px;
+        height: 25px;
+        top: 8px;
+        left: 8px;
+    }
+}
