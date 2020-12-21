@@ -7,8 +7,14 @@ const StatusToggle = ({ setStatusToggle, statusToggle, className, statusFirst, s
     if (typeof statusToggle !== 'undefined') setStatusToggle(prev => !prev)
     if (typeof setStatusTogglePopulation !== 'undefined') setStatusTogglePopulation(prev => !prev)
   }
-  const statusToggleFirst = () => !statusToggle ? 'active' : ''
-  const statusToggleSecond = () => statusToggle ? 'active' : ''
+  const statusToggleFirst = () => {
+    if (typeof statusToggle !== 'undefined') return !statusToggle ? 'active' : 'not'
+    if (typeof statusTogglePopulation !== 'undefined') return !statusTogglePopulation ? 'active' : 'not'
+  }
+  const statusToggleSecond = () => {
+    if (typeof statusToggle !== 'undefined') return statusToggle ? 'active' : 'not'
+    if (typeof statusTogglePopulation !== 'undefined') return statusTogglePopulation ? 'active' : 'not'
+  }
   return (
     <div className={className, 'status-toggle'}>
       <button className={statusToggleFirst()} type="button" onClick={onChangeToggle}>
