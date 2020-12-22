@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import Map from './Map';
+import Graph from '../../Graph/graph';
 
 class MapContainer extends React.PureComponent {
   render() {
@@ -31,6 +32,7 @@ class MapContainer extends React.PureComponent {
             handleSwitchAbsolutePer100K={handleSwitchAbsolutePer100K}
             handleSwitchAllToday={handleSwitchAllToday}
           />
+          <Graph />
         </div>
       </section>
     );
