@@ -10,6 +10,13 @@ const RegionStatistic = ({ totalData, perCountryData, setStatusToggle, statusTog
   const [isFullScreen, setIsFullScreen] = useState('')
   const [isItemActive, setItemActive] = useState(-1)
   const [isWorldItem, setWorldItem] = useState('active')
+  const [searchValue, setSearchValue] = useState('')
+  const onChangeToggle = (event) => {
+    const target = event.target.value
+    setSearchValue(target)
+    console.log(target)
+  }
+  console.log(perCountryData.filter((it) => it.country == 'USA'))
   perCountryData.sort((a, b) => b.cases - a.cases)
   perCountryData.map((it, i, arr) => {
     it['active'] = ''
@@ -21,7 +28,7 @@ const RegionStatistic = ({ totalData, perCountryData, setStatusToggle, statusTog
         setIsFullScreen={setIsFullScreen}
       />
       <h4 className="countries__title">All stats by country</h4>
-      <input className="country-search" type="text" placeholder="country..." />
+      <input className="country-search" value={searchValue} onChange={onChangeToggle} type="text" placeholder="country..." />
       <ul className="countries__list">
           <li className={`${isWorldItem} countries__item`} onClick={() => {
             setChosenCountry('Global')
@@ -32,7 +39,10 @@ const RegionStatistic = ({ totalData, perCountryData, setStatusToggle, statusTog
             <span className="item__name">World Cases</span>
             <span className="item__planet">🌏</span>
           </li>
-        {perCountryData.map((it, i) => (
+        {perCountryData.filter((it) => {
+          if (searchValue.length > 0) return it.country.toLowerCase().includes(searchValue.toLowerCase())
+          else return it
+        }).map((it, i) => (
           <li className={`${it.active} countries__item`} onClick={() => {
             setChosenCountry(it.country)
             setItemActive(i)
