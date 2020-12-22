@@ -31,6 +31,7 @@ const Main = ({ perCountryData, totalData }) => {
           chosenCountry={chosenCountry}
         />
         <CountriesList
+          totalData={totalData}
           perCountryData={perCountryData}
           setStatusToggle={setStatusToggle}
           statusToggle={statusToggle}

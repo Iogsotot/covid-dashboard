@@ -3,6 +3,7 @@
 * {
   box-sizing: border-box;
 }
+
 .countries {
   position: relative;
   display: flex;
@@ -50,11 +51,16 @@
         color: $red;
       }
 
-      .item__flag {
+      .item__flag,
+      .item__planet {
         position: absolute;
         right: 15px;
         top: 50%;
         transform: translate(0, -50%);
+      }
+
+      .item__planet {
+        right: 19px;
       }
     }
   }
@@ -72,4 +78,13 @@
   width: 100%;
   max-height: 100vh;
   z-index: 1000;
+}
+
+@media(max-width: 768px) {
+  .countries {
+    &__title {
+      font-size: 1rem;
+      margin-top: 25px;
+    }
+  }
 }
