@@ -1,6 +1,8 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import Map from './Map';
+import Graph from '../../Graph/graph';
+import './index.scss';
 
 class MapContainer extends React.PureComponent {
   render() {
@@ -10,6 +12,7 @@ class MapContainer extends React.PureComponent {
       isToday,
       handleSwitchAbsolutePer100K,
       handleSwitchAllToday,
+      worldTimeline,
     } = this.props;
 
     const countcasesPer100K = (value) => Math.floor(value / 10);
@@ -22,17 +25,18 @@ class MapContainer extends React.PureComponent {
     }));
 
     return (
-      <section className="map">
-        <div className="map__chrtdiv">
-          <Map
-            countryData={countryData}
-            isPer100K={isPer100K}
-            isToday={isToday}
-            handleSwitchAbsolutePer100K={handleSwitchAbsolutePer100K}
-            handleSwitchAllToday={handleSwitchAllToday}
-          />
-        </div>
-      </section>
+      <div className="charts-wrapper">
+        <Map
+          countryData={countryData}
+          isPer100K={isPer100K}
+          isToday={isToday}
+          handleSwitchAbsolutePer100K={handleSwitchAbsolutePer100K}
+          handleSwitchAllToday={handleSwitchAllToday}
+        />
+        <Graph
+          worldTimeline={worldTimeline}
+        />
+      </div>
     );
   }
 }

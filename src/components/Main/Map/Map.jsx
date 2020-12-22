@@ -85,7 +85,7 @@ class Map extends Component {
       handleSwitchAllToday,
     } = this.props;
 
-    const map = am4core.create('chartdiv', am4maps.MapChart);
+    const map = am4core.create('mapchartdiv', am4maps.MapChart);
     // eslint-disable-next-line camelcase
     map.geodata = am4geodata_worldLow;
     map.projection = new am4maps.projections.Miller();
@@ -143,10 +143,10 @@ class Map extends Component {
     map.tooltip.getStrokeFromObject = false;
 
     map.deltaLongitude = -10;
-    map.homeGeoPoint = {
-      latitude: -2,
-      longitude: 10
-    };
+    // map.homeGeoPoint = {
+    //   latitude: -2,
+    //   longitude: 10
+    // };
 
     const polygonSeries = map.series.push(new am4maps.MapPolygonSeries());
     this.polygonSeries = polygonSeries;
@@ -250,87 +250,19 @@ class Map extends Component {
       handleHover(event.target);
     });
 
-    // buttons & chart container
-    const buttonsAndChartContainer = map.createChild(am4core.Container);
-    buttonsAndChartContainer.layout = 'vertical';
-    // make this bigger if you want more space for the chart
-    buttonsAndChartContainer.height = am4core.percent(30);
-    buttonsAndChartContainer.width = am4core.percent(100);
-    buttonsAndChartContainer.valign = 'bottom';
-
-    // country name and buttons container
-    const nameAndButtonsContainer = buttonsAndChartContainer.createChild(am4core.Container);
-    nameAndButtonsContainer.width = am4core.percent(100);
-    nameAndButtonsContainer.padding(0, 10, 5, 20);
-    nameAndButtonsContainer.layout = 'horizontal';
-
-    // name of a country and date label
-    const countryName = nameAndButtonsContainer.createChild(am4core.Label);
-    countryName.fontSize = '1.1em';
-    countryName.fill = am4core.color('#ffffff');
-    countryName.valign = 'middle';
-
-    // buttons container (active/confirmed/recovered/deaths)
-    // const buttonsContainer = nameAndButtonsContainer.createChild(am4core.Container);
-    // buttonsContainer.layout = 'grid';
-    // buttonsContainer.width = am4core.percent(100);
-    // buttonsContainer.x = 10;
-    // buttonsContainer.contentAlign = 'right';
-
-    // Chart & slider container
-    const chartAndSliderContainer = buttonsAndChartContainer.createChild(am4core.Container);
-    chartAndSliderContainer.layout = 'vertical';
-    chartAndSliderContainer.height = am4core.percent(100);
-    chartAndSliderContainer.width = am4core.percent(100);
-    chartAndSliderContainer.background = new am4core.RoundedRectangle();
-    chartAndSliderContainer.background.fill = am4core.color('#000000');
-    chartAndSliderContainer.background.cornerRadius(30, 30, 0, 0);
-    chartAndSliderContainer.background.fillOpacity = 0.25;
-    chartAndSliderContainer.paddingTop = 12;
-    chartAndSliderContainer.paddingBottom = 0;
-
-    // Slider container
-    // const sliderContainer = chartAndSliderContainer.createChild(am4core.Container);
-    // sliderContainer.width = am4core.percent(100);
-    // sliderContainer.padding(0, 15, 15, 10);
-    // sliderContainer.layout = 'horizontal';
-
-    // const slider = sliderContainer.createChild(am4core.Slider);
-    // slider.width = am4core.percent(100);
-    // slider.valign = 'middle';
-    // slider.background.opacity = 0.4;
-    // slider.opacity = 0.7;
-    // slider.background.fill = am4core.color('#ffffff');
-    // slider.marginLeft = 20;
-    // slider.marginRight = 35;
-    // slider.height = 15;
-    // slider.start = 1;
-
-    // BOTTOM CHART
-    // https://www.amcharts.com/docs/v4/chart-types/xy-chart/
-    const lineChart = chartAndSliderContainer.createChild(am4charts.XYChart);
-    lineChart.fontSize = '0.8em';
-    lineChart.paddingRight = 30;
-    lineChart.paddingLeft = 30;
-    lineChart.maskBullets = false;
-    lineChart.zoomOutButton.disabled = true;
-    lineChart.paddingBottom = 5;
-    lineChart.paddingTop = 3;
-
-    // make a copy of data as we will be modifying it
-    // lineChart.data = JSON.parse(JSON.stringify(covid_total_timeline));
-
     this.map = map;
   }
 
   render() {
     return (
-      <div
-        id="chartdiv"
-        style={{
-          width: '100%', height: '100%', minHeight: '500px',
-        }}
-      />
+      <div className="map__chrtdiv">
+        <div
+          id="mapchartdiv"
+          style={{
+            width: '100%', height: '100%', minHeight: '400px',
+          }}
+        />
+      </div>
     );
   }
 }

@@ -3,11 +3,11 @@
 }
 
 .main {
-    width: 100%;
-    // max-width: 1200px;
-    display: flex;
-    justify-content: center;
-    align-items: stretch;
+  width: 100%;
+  // max-width: 1200px;
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
 }
 
 .map {
@@ -19,7 +19,7 @@
   height: calc(100vh - 100px);
 }
 
-@media(max-width: 920px) {
+@media (max-width: 920px) {
   .tables {
     width: 50%;
   }
