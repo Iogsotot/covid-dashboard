@@ -85,7 +85,7 @@ class Map extends Component {
       handleSwitchAllToday,
     } = this.props;
 
-    const map = am4core.create('chartdiv', am4maps.MapChart);
+    const map = am4core.create('mapchartdiv', am4maps.MapChart);
     // eslint-disable-next-line camelcase
     map.geodata = am4geodata_worldLow;
     map.projection = new am4maps.projections.Miller();
@@ -143,10 +143,10 @@ class Map extends Component {
     map.tooltip.getStrokeFromObject = false;
 
     map.deltaLongitude = -10;
-    map.homeGeoPoint = {
-      latitude: -2,
-      longitude: 10
-    };
+    // map.homeGeoPoint = {
+    //   latitude: -2,
+    //   longitude: 10
+    // };
 
     const polygonSeries = map.series.push(new am4maps.MapPolygonSeries());
     this.polygonSeries = polygonSeries;
@@ -255,12 +255,14 @@ class Map extends Component {
 
   render() {
     return (
-      <div
-        id="chartdiv"
-        style={{
-          width: '100%', height: '100%', minHeight: '500px',
-        }}
-      />
+      <div className="map__chrtdiv">
+        <div
+          id="mapchartdiv"
+          style={{
+            width: '100%', height: '100%', minHeight: '400px',
+          }}
+        />
+      </div>
     );
   }
 }

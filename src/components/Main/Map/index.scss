@@ -1,0 +1,9 @@
+@import '../../../../src/shared/variables';
+
+.charts-wrapper {
+  height: 100%;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}

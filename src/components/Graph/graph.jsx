@@ -2,7 +2,14 @@ import React from 'react';
 import './graph.scss';
 
 const Graph = () => (
-  <section className="graph" />
+  <div className="graph__chartdiv">
+    <div
+      id="chartdiv"
+      style={{
+        width: '100%', height: '100%', minHeight: '150px',
+      }}
+    />
+  </div>
 );
 
 export default Graph;

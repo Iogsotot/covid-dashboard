@@ -13,13 +13,15 @@ const Main = ({ perCountryData, totalData }) => {
   return (
     <main className="main">
       <h1 className="visually-hidden">Covid-19 Dasboard</h1>
-      <Map
-        perCountryData={perCountryData}
-        isPer100K={statusTogglePopulation}
-        isToday={statusToggle}
-        handleSwitchAbsolutePer100K={setStatusTogglePopulation}
-        handleSwitchAllToday={setStatusToggle}
-      />
+      <section className="map">
+        <Map
+          perCountryData={perCountryData}
+          isPer100K={statusTogglePopulation}
+          isToday={statusToggle}
+          handleSwitchAbsolutePer100K={setStatusTogglePopulation}
+          handleSwitchAllToday={setStatusToggle}
+        />
+      </section>
       <div className="tables">
         <Table
           totalData={totalData}
