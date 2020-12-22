@@ -50,11 +50,16 @@
         color: $red;
       }
 
-      .item__flag {
+      .item__flag,
+      .item__planet {
         position: absolute;
         right: 15px;
         top: 50%;
         transform: translate(0, -50%);
+      }
+
+      .item__planet {
+        right: 19px;
       }
     }
   }
