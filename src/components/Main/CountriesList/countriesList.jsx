@@ -11,6 +11,8 @@ const RegionStatistic = ({ totalData, perCountryData, setStatusToggle, statusTog
   const worldRecoverPer100k = () => Math.round(totalData.recoveredPerOneMillion / 10)
   const displayWorldDeath = () => !statusToggle ? totalData.deaths : totalData.todayDeaths
   const WorldDeathPer100k = () => Math.round(totalData.deathsPerOneMillion / 10)
+
+  console.log(totalData)
   
   const [isFullScreen, setIsFullScreen] = useState('')
   const [isItemActive, setItemActive] = useState(-1)
@@ -20,22 +22,19 @@ const RegionStatistic = ({ totalData, perCountryData, setStatusToggle, statusTog
   const onChangeToggle = (event) => {
     const target = event.target.value
     setSearchValue(target)
-    console.log(target)
   }
-
-  perCountryData.sort((a, b) => b.cases - a.cases)
+  // perCountryData.sort((a, b) => b.cases - a.cases)
   perCountryData.map((it, i, arr) => {
     it['active'] = ''
     if (isItemActive >= 0) return arr[isItemActive]['active'] = 'active'
   })
-
   return (
     <div className={`${isFullScreen} countries`}>
       <FullScreenToggle
         setIsFullScreen={setIsFullScreen}
       />
       <h4 className="countries__title">All stats by country</h4>
-      <input className="country-search" value={searchValue} onChange={onChangeToggle} type="text" placeholder="country..." />
+      <input className="country-search" value={searchValue} onChange={onChangeToggle} type="text" placeholder="country..." />    
       <ul className="countries__list">
           <li className={`${isWorldItem} countries__item`} onClick={() => {
             setChosenCountry('Global')
@@ -50,11 +49,15 @@ const RegionStatistic = ({ totalData, perCountryData, setStatusToggle, statusTog
             </span>
             <span className="item__planet">🌏</span>
           </li>
-        {perCountryData.filter((it) => {
+        {perCountryData.sort((a, b) => {
+          if (statusToggle) return b.todayCases - a.todayCases
+          if (statusTogglePopulation) return b.casesPerOneMillion - a.casesPerOneMillion
+          else return b.cases - a.cases
+        }).filter((it) => {
           if (searchValue.length > 0) return it.country.toLowerCase().includes(searchValue.toLowerCase())
           else return it
         }).map((it, i) => (
-          <li className={`${it.active} countries__item`} onClick={() => {
+          <li className={`${it.active} countries__item`} key={i.toString()} onClick={() => {
             setChosenCountry(it.country)
             setItemActive(i)
             setWorldItem('')
