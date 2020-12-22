@@ -16,6 +16,14 @@
   background-color: $gray-800;
   border-radius: 5px;
 
+  .country-search {
+    background-color: $gray-600;
+    color: $gray-200;
+    &::placeholder {
+      color: $gray-800;
+    }
+  }
+
   &__title {
     font-size: 20px;
     margin: 10px 0 7px 0;
@@ -63,6 +71,32 @@
       .item__planet {
         right: 19px;
       }
+
+      .item__addition-wrap {
+        width: 210px;
+        display: flex;
+        margin-left: auto;
+        margin-right: 50px;
+
+        .item__addition {
+          display: block;
+          font-size: .65rem;
+          
+          &:nth-child(1) {
+            width: 60%;
+          }
+          &:nth-child(2) {
+            width: 40%;
+          }
+
+          .death {
+            color: $red;
+          }
+          .recover {
+            color: $green;
+          }
+        }
+      }
     }
   }
 
@@ -89,6 +123,15 @@
     &__title {
       font-size: 1rem;
       margin-top: 25px;
+    }
+
+    .countries__list {
+      .countries__item {
+        .item__flag {
+          width: 20px;
+          right: 5px;
+        }
+      }
     }
   }
 }
