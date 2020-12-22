@@ -1,85 +1,101 @@
-import React from 'react';
+/* eslint-disable no-unused-vars */
+/* eslint-disable camelcase */
+/* eslint-disable no-restricted-syntax */
+/* eslint-disable react/prop-types */
+import React, { Component } from 'react';
+import * as am4core from '@amcharts/amcharts4/core';
+import * as am4charts from '@amcharts/amcharts4/charts';
+import am4themes_animated from '@amcharts/amcharts4/themes/animated';
 import './graph.scss';
 
-const Graph = () => (
-  <div className="graph__chartdiv">
-    <div
-      id="chartdiv"
-      style={{
-        width: '100%', height: '100%', minHeight: '150px',
-      }}
-    />
-  </div>
-);
+am4core.useTheme(am4themes_animated);
+
+class Graph extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      timelineData: [],
+    };
+  }
+
+  componentDidMount() {
+    const { worldTimeline } = this.props;
+    const { timelineData } = this.state;
+
+    const chart = am4core.create('chartdiv', am4charts.XYChart);
+
+    chart.fontSize = '0.8em';
+    chart.paddingRight = 10;
+    chart.paddingLeft = 0;
+    chart.maskBullets = false;
+    chart.zoomOutButton.disabled = true;
+    chart.paddingBottom = 5;
+    chart.paddingTop = 3;
+
+    chart.data = timelineData;
+
+    const dateAxis = chart.xAxes.push(new am4charts.DateAxis());
+    dateAxis.renderer.grid.template.location = 0;
+
+    const valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+    valueAxis.tooltip.disabled = true;
+    valueAxis.renderer.minWidth = 35;
+
+    const series = chart.series.push(new am4charts.LineSeries());
+    series.dataFields.dateX = 'date';
+    series.dataFields.valueY = 'value';
+
+    series.tooltipText = '{valueY.value}';
+    chart.cursor = new am4charts.XYCursor();
+
+    const scrollbarX = new am4charts.XYChartScrollbar();
+    scrollbarX.series.push(series);
+    chart.scrollbarX = scrollbarX;
+
+    chart.scrollbarX.startGrip.background.fill = am4core.color('#CBA5A4');
+    chart.scrollbarX.endGrip.background.fill = am4core.color('#CBA5A4');
+    chart.scrollbarX.thumb.background.fill = am4core.color('#CBA5A4');
+
+    chart.scrollbarX.startGrip.icon.stroke = am4core.color('#8A5658');
+    chart.scrollbarX.endGrip.icon.stroke = am4core.color('#8A5658');
+
+    this.chart = chart;
+  }
+
+  componentDidUpdate(oldProps) {
+    const { worldTimeline } = this.props;
+
+    const createTimelineData = () => {
+      const timelineData = [];
+
+      for (const [key, value] of Object.entries(worldTimeline.cases)) {
+        timelineData.push({ date: new Date(key), value });
+      }
+
+      return timelineData;
+    };
+
+    if (oldProps.worldTimeline !== worldTimeline) {
+      this.chart.data = createTimelineData();
+    }
+  }
+
+  componentWillUnmount() {
+    if (this.chart) {
+      this.chart.dispose();
+    }
+  }
+
+  render() {
+    return (
+      <div className="graph__chartdiv">
+        <div
+          id="chartdiv"
+          style={{ width: '100%', height: '100%', minHeight: '125px' }}
+        />
+      </div>
+    );
+  }
+}
 
 export default Graph;
-
-// // buttons & chart container
-// const buttonsAndChartContainer = map.createChild(am4core.Container);
-// buttonsAndChartContainer.layout = 'vertical';
-// // make this bigger if you want more space for the chart
-// buttonsAndChartContainer.height = am4core.percent(30);
-// buttonsAndChartContainer.width = am4core.percent(100);
-// buttonsAndChartContainer.valign = 'bottom';
-
-// // country name and buttons container
-// const nameAndButtonsContainer = buttonsAndChartContainer.createChild(am4core.Container);
-// nameAndButtonsContainer.width = am4core.percent(100);
-// nameAndButtonsContainer.padding(0, 10, 5, 20);
-// nameAndButtonsContainer.layout = 'horizontal';
-
-// // name of a country and date label
-// const countryName = nameAndButtonsContainer.createChild(am4core.Label);
-// countryName.fontSize = '1.1em';
-// countryName.fill = am4core.color('#ffffff');
-// countryName.valign = 'middle';
-
-// // buttons container (active/confirmed/recovered/deaths)
-// // const buttonsContainer = nameAndButtonsContainer.createChild(am4core.Container);
-// // buttonsContainer.layout = 'grid';
-// // buttonsContainer.width = am4core.percent(100);
-// // buttonsContainer.x = 10;
-// // buttonsContainer.contentAlign = 'right';
-
-// // Chart & slider container
-// const chartAndSliderContainer = buttonsAndChartContainer.createChild(am4core.Container);
-// chartAndSliderContainer.layout = 'vertical';
-// chartAndSliderContainer.height = am4core.percent(100);
-// chartAndSliderContainer.width = am4core.percent(100);
-// chartAndSliderContainer.background = new am4core.RoundedRectangle();
-// chartAndSliderContainer.background.fill = am4core.color('#000000');
-// chartAndSliderContainer.background.cornerRadius(30, 30, 0, 0);
-// chartAndSliderContainer.background.fillOpacity = 0.25;
-// chartAndSliderContainer.paddingTop = 12;
-// chartAndSliderContainer.paddingBottom = 0;
-
-// // Slider container
-// // const sliderContainer = chartAndSliderContainer.createChild(am4core.Container);
-// // sliderContainer.width = am4core.percent(100);
-// // sliderContainer.padding(0, 15, 15, 10);
-// // sliderContainer.layout = 'horizontal';
-
-// // const slider = sliderContainer.createChild(am4core.Slider);
-// // slider.width = am4core.percent(100);
-// // slider.valign = 'middle';
-// // slider.background.opacity = 0.4;
-// // slider.opacity = 0.7;
-// // slider.background.fill = am4core.color('#ffffff');
-// // slider.marginLeft = 20;
-// // slider.marginRight = 35;
-// // slider.height = 15;
-// // slider.start = 1;
-
-// // BOTTOM CHART
-// // https://www.amcharts.com/docs/v4/chart-types/xy-chart/
-// const lineChart = chartAndSliderContainer.createChild(am4charts.XYChart);
-// lineChart.fontSize = '0.8em';
-// lineChart.paddingRight = 30;
-// lineChart.paddingLeft = 30;
-// lineChart.maskBullets = false;
-// lineChart.zoomOutButton.disabled = true;
-// lineChart.paddingBottom = 5;
-// lineChart.paddingTop = 3;
-
-// make a copy of data as we will be modifying it
-// lineChart.data = JSON.parse(JSON.stringify(covid_total_timeline));

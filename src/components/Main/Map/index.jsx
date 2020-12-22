@@ -12,6 +12,7 @@ class MapContainer extends React.PureComponent {
       isToday,
       handleSwitchAbsolutePer100K,
       handleSwitchAllToday,
+      worldTimeline,
     } = this.props;
 
     const countcasesPer100K = (value) => Math.floor(value / 10);
@@ -32,7 +33,9 @@ class MapContainer extends React.PureComponent {
           handleSwitchAbsolutePer100K={handleSwitchAbsolutePer100K}
           handleSwitchAllToday={handleSwitchAllToday}
         />
-        <Graph />
+        <Graph
+          worldTimeline={worldTimeline}
+        />
       </div>
     );
   }

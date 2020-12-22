@@ -22,13 +22,18 @@ const App = () => {
 
   return (
     <Suspense fallback={<Loader />}>
-    <div className="App">
-      {/* <Main perCountryData={perCountryData} totalData={totalData} />
+      <div className="App">
+        {/* <Main perCountryData={perCountryData} totalData={totalData} />
       <Footer /> */}
-      {loaderWaitCountryData || loaderWaitTotalData ? <Loader /> : <Main perCountryData={perCountryData} totalData={totalData} />}
+        {loaderWaitCountryData || loaderWaitTotalData
+          ? <Loader />
+          : <Main
+            perCountryData={perCountryData}
+            totalData={totalData}
+            worldTimeline={worldTimeline} />}
         {/* <Main perCountryData={perCountryData} totalData={totalData} /> */}
         <Footer />
-    </div>
+      </div>
     </Suspense>
   );
 };
