@@ -68,6 +68,8 @@ class Map extends Component {
     if (oldProps.countryData !== countryData) {
       this.polygonSeries.data = countryData;
     }
+
+    // console.log(this.map.zoomGeoPoint);
   }
 
   componentWillUnmount() {
@@ -87,7 +89,6 @@ class Map extends Component {
     // eslint-disable-next-line camelcase
     map.geodata = am4geodata_worldLow;
     map.projection = new am4maps.projections.Miller();
-
     map.width = am4core.percent(100);
     map.height = am4core.percent(100);
 
@@ -102,7 +103,7 @@ class Map extends Component {
     header.fontSize = '1.5em';
     header.fill = COLOR_SECONDARY;
 
-    // switch between Absolute and Per Capita
+    // switch between Absolute and Per 100K
     const absolutePerCapitaSwitch = map.createChild(am4core.SwitchButton);
     absolutePerCapitaSwitch.align = 'right';
     absolutePerCapitaSwitch.marginRight = 125;
@@ -142,6 +143,10 @@ class Map extends Component {
     map.tooltip.getStrokeFromObject = false;
 
     map.deltaLongitude = -10;
+    map.homeGeoPoint = {
+      latitude: -2,
+      longitude: 10
+    };
 
     const polygonSeries = map.series.push(new am4maps.MapPolygonSeries());
     this.polygonSeries = polygonSeries;
@@ -266,11 +271,11 @@ class Map extends Component {
     countryName.valign = 'middle';
 
     // buttons container (active/confirmed/recovered/deaths)
-    const buttonsContainer = nameAndButtonsContainer.createChild(am4core.Container);
-    buttonsContainer.layout = 'grid';
-    buttonsContainer.width = am4core.percent(100);
-    buttonsContainer.x = 10;
-    buttonsContainer.contentAlign = 'right';
+    // const buttonsContainer = nameAndButtonsContainer.createChild(am4core.Container);
+    // buttonsContainer.layout = 'grid';
+    // buttonsContainer.width = am4core.percent(100);
+    // buttonsContainer.x = 10;
+    // buttonsContainer.contentAlign = 'right';
 
     // Chart & slider container
     const chartAndSliderContainer = buttonsAndChartContainer.createChild(am4core.Container);
@@ -285,21 +290,21 @@ class Map extends Component {
     chartAndSliderContainer.paddingBottom = 0;
 
     // Slider container
-    const sliderContainer = chartAndSliderContainer.createChild(am4core.Container);
-    sliderContainer.width = am4core.percent(100);
-    sliderContainer.padding(0, 15, 15, 10);
-    sliderContainer.layout = 'horizontal';
+    // const sliderContainer = chartAndSliderContainer.createChild(am4core.Container);
+    // sliderContainer.width = am4core.percent(100);
+    // sliderContainer.padding(0, 15, 15, 10);
+    // sliderContainer.layout = 'horizontal';
 
-    const slider = sliderContainer.createChild(am4core.Slider);
-    slider.width = am4core.percent(100);
-    slider.valign = 'middle';
-    slider.background.opacity = 0.4;
-    slider.opacity = 0.7;
-    slider.background.fill = am4core.color('#ffffff');
-    slider.marginLeft = 20;
-    slider.marginRight = 35;
-    slider.height = 15;
-    slider.start = 1;
+    // const slider = sliderContainer.createChild(am4core.Slider);
+    // slider.width = am4core.percent(100);
+    // slider.valign = 'middle';
+    // slider.background.opacity = 0.4;
+    // slider.opacity = 0.7;
+    // slider.background.fill = am4core.color('#ffffff');
+    // slider.marginLeft = 20;
+    // slider.marginRight = 35;
+    // slider.height = 15;
+    // slider.start = 1;
 
     // BOTTOM CHART
     // https://www.amcharts.com/docs/v4/chart-types/xy-chart/
