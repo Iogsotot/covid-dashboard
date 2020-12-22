@@ -54,12 +54,14 @@ const RegionStatistic = ({ totalData, perCountryData, setStatusToggle, statusTog
           </li>
         ))}
       </ul>
-      <StatusToggles
-        setStatusToggle={setStatusToggle}
-        statusToggle={statusToggle}
-        statusTogglePopulation={statusTogglePopulation}
-        setStatusTogglePopulation={setStatusTogglePopulation}
-      />
+      <div className="toggles-wrapper">
+        <StatusToggles
+          setStatusToggle={setStatusToggle}
+          statusToggle={statusToggle}
+          statusTogglePopulation={statusTogglePopulation}
+          setStatusTogglePopulation={setStatusTogglePopulation}
+        />
+      </div>
     </div>
   );
 };
