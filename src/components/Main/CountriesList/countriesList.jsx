@@ -46,7 +46,7 @@ const RegionStatistic = ({ totalData, perCountryData, setStatusToggle, statusTog
             <span className="item__name">World Cases</span>
             <span className="item__addition-wrap">
               <span className="item__addition"> Recovers: <span className="recover">{!statusTogglePopulation ? displayWorldRecover() : worldRecoverPer100k()}</span></span>
-              <span className="item__addition"> Death: <span className="death">{!statusTogglePopulation ? displayWorldDeath() : WorldDeathPer100k()}</span></span>
+              <span className="item__addition"> Deaths: <span className="death">{!statusTogglePopulation ? displayWorldDeath() : WorldDeathPer100k()}</span></span>
             </span>
             <span className="item__planet">🌏</span>
           </li>
