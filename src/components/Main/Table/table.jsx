@@ -25,16 +25,16 @@ const Table = ({ totalData, perCountryData, setStatusToggle, statusToggle, statu
     else return !statusToggle ? chosenCountryData.recovered : chosenCountryData.todayRecovered
   }
   const casesPer100k = () => {
-    if (chosenCountry === 'Global') return totalData.casesPerOneMillion / 10
-    else return chosenCountryData.casesPerOneMillion / 10
+    if (chosenCountry === 'Global') return Math.round(totalData.casesPerOneMillion / 10)
+    else return Math.round(chosenCountryData.casesPerOneMillion / 10)
   }
   const deathPer100k = () => {
-    if (chosenCountry === 'Global') return totalData.deathsPerOneMillion / 10
-    else return chosenCountryData.deathsPerOneMillion / 10
+    if (chosenCountry === 'Global') return Math.round(totalData.deathsPerOneMillion / 10)
+    else return Math.round(chosenCountryData.deathsPerOneMillion / 10)
   }
   const recoveredPer100k = () => {
-    if (chosenCountry === 'Global') return totalData.recoveredPerOneMillion / 10
-    else return chosenCountryData.recoveredPerOneMillion / 10
+    if (chosenCountry === 'Global') return Math.round(totalData.recoveredPerOneMillion / 10)
+    else return Math.round(chosenCountryData.recoveredPerOneMillion / 10)
   }
   return (
     <section className={`${isFullScreen} global-stats`}>
