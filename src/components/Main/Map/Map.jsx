@@ -43,15 +43,28 @@ class Map extends Component {
   }
 
   componentDidUpdate(oldProps) {
-    const { isPer100K, isToday } = this.props;
+    const { countryData, isPer100K, isToday } = this.props;
 
     if (oldProps.isPer100K !== isPer100K) {
       // this.map.propertyFields.data = this.state.paddingRight;
       this.absolutePerCapitaSwitch.isActive = isPer100K;
+      if (isPer100K) {
+        this.polygonSeries.dataFields.value = 'casesPer100K';
+      } else {
+        this.polygonSeries.dataFields.value = 'cases';
+      }
     }
     if (oldProps.isToday !== isToday) {
       // this.map.propertyFields.data = this.state.paddingRight;
       this.allTodaySwitch.isActive = isToday;
+      if (isToday) {
+        this.polygonSeries.dataFields.value = 'todayCases';
+      } else {
+        this.polygonSeries.dataFields.value = 'cases';
+      }
+    }
+    if (oldProps.countryData !== countryData) {
+      this.polygonSeries.data = countryData;
     }
   }
 
@@ -129,6 +142,7 @@ class Map extends Component {
     map.deltaLongitude = -10;
 
     const polygonSeries = map.series.push(new am4maps.MapPolygonSeries());
+    this.polygonSeries = polygonSeries;
     polygonSeries.useGeodata = true;
     polygonSeries.mapPolygons.template.events.on('hit', (ev) => {
       map.zoomToMapObject(ev.target);
@@ -156,6 +170,7 @@ class Map extends Component {
 
     // Set real-world API data
     polygonSeries.data = countryData;
+    polygonSeries.dataFields.value = 'cases';
     map.zoomControl = new am4maps.ZoomControl();
     // map.zoomControl.marginBottom = 50;
     map.zoomControl.slider.height = 100;
