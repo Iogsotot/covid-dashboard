@@ -17,6 +17,7 @@ class MapContainer extends React.PureComponent {
     const countryData = perCountryData.map((el) => ({
       id: el.countryInfo.iso2,
       casesPer100K: countcasesPer100K(el.casesPerOneMillion),
+      todayCasesPer100K: countcasesPer100K(el.todayCases),
       ...el,
     }));
 

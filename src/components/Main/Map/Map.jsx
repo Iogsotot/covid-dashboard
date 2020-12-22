@@ -45,23 +45,25 @@ class Map extends Component {
   componentDidUpdate(oldProps) {
     const { countryData, isPer100K, isToday } = this.props;
 
-    if (oldProps.isPer100K !== isPer100K) {
-      // this.map.propertyFields.data = this.state.paddingRight;
-      this.absolutePerCapitaSwitch.isActive = isPer100K;
-      if (isPer100K) {
+    const selectDataField = () => {
+      if (isPer100K && !isToday) {
         this.polygonSeries.dataFields.value = 'casesPer100K';
-      } else {
-        this.polygonSeries.dataFields.value = 'cases';
-      }
-    }
-    if (oldProps.isToday !== isToday) {
-      // this.map.propertyFields.data = this.state.paddingRight;
-      this.allTodaySwitch.isActive = isToday;
-      if (isToday) {
+      } else if (isPer100K && isToday) {
+        this.polygonSeries.dataFields.value = 'todayCasesPer100K';
+      } else if (!isPer100K && isToday) {
         this.polygonSeries.dataFields.value = 'todayCases';
       } else {
         this.polygonSeries.dataFields.value = 'cases';
       }
+    }
+
+    if (oldProps.isPer100K !== isPer100K) {
+      this.absolutePerCapitaSwitch.isActive = isPer100K;
+      selectDataField();
+    }
+    if (oldProps.isToday !== isToday) {
+      this.allTodaySwitch.isActive = isToday;
+      selectDataField();
     }
     if (oldProps.countryData !== countryData) {
       this.polygonSeries.data = countryData;
