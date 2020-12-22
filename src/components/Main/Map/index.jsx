@@ -3,75 +3,33 @@ import React from 'react';
 import Map from './Map';
 
 class MapContainer extends React.PureComponent {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      isLoaded: false,
-      countryData: [],
-    };
-  }
-
-  componentDidMount() {
-    this.getCountriesData();
-  }
-
-  getCountriesData() {
-    fetch('https://corona.lmao.ninja/v2/countries')
-      .then((res) => res.json())
-      .then((data) => {
-        const countryData = [];
-
-        data.forEach((el) => {
-          countryData.push({
-            id: el.countryInfo.iso2,
-            value: el.cases,
-            ...el,
-          });
-        });
-
-        this.setState({
-          isLoaded: true,
-          countryData,
-        });
-      }, (error) => {
-        this.setState({
-          isLoaded: true,
-          error,
-        });
-      });
-  }
-
   render() {
-    const { isLoaded, error, countryData } = this.state;
     const {
+      perCountryData,
       isPer100K,
       isToday,
       handleSwitchAbsolutePer100K,
       handleSwitchAllToday,
     } = this.props;
 
-    if (error) {
-      return (
-        <div>
-          Error:
-          {error.message}
-        </div>
-      );
-    }
+    const countcasesPer100K = (value) => Math.floor(value / 10);
+
+    const countryData = perCountryData.map((el) => ({
+      id: el.countryInfo.iso2,
+      casesPer100K: countcasesPer100K(el.casesPerOneMillion),
+      ...el,
+    }));
 
     return (
       <section className="map">
         <div className="map__chrtdiv">
-          {isLoaded ? (
-            <Map
-              countryData={countryData}
-              isPer100K={isPer100K}
-              isToday={isToday}
-              handleSwitchAbsolutePer100K={handleSwitchAbsolutePer100K}
-              handleSwitchAllToday={handleSwitchAllToday}
-            />
-          ) : 'Loading...'}
+          <Map
+            countryData={countryData}
+            isPer100K={isPer100K}
+            isToday={isToday}
+            handleSwitchAbsolutePer100K={handleSwitchAbsolutePer100K}
+            handleSwitchAllToday={handleSwitchAllToday}
+          />
         </div>
       </section>
     );
