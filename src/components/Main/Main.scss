@@ -19,8 +19,11 @@
   height: calc(100vh - 100px);
 }
 
-// @media(max-width: 1000px) {
-//     .main {
-//         flex-wrap: wrap;
-//     }
-// }
+@media(max-width: 920px) {
+  .tables {
+    width: 40%;
+  }
+  .map {
+    width: 60%;
+  }
+}

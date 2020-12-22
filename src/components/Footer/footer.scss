@@ -109,3 +109,64 @@
     }
   }
 }
+
+@media(max-width: 920px) {
+.footer {
+  .footer-cols {
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+
+    .footer__title {
+      font-size: .8rem;
+    }
+
+    .copyright {
+      width: 25%;
+
+      .footer__title {
+        font-size: .8rem;
+      }
+    }
+
+    .students {      
+      .footer__title {
+        margin: 5px;
+      }
+    }
+
+    .students-list {
+      .students__item {
+        margin: 0 5px;
+
+        .link {
+          font-size: .6rem;
+        }
+      }
+    }
+  }
+
+  .icon--github {
+    width: 15px;
+    height: 15px;
+    background-size: 15px;
+  }
+
+  .mentor {
+    .footer__title {
+      margin: 0;
+      margin-bottom: 10px;
+    }
+    
+    &__link {
+      font-size: 0.6rem;
+    }
+  }
+
+  .alma-mater {
+    width: 70px;
+    height: 25px;
+    margin-right: 10px;
+  }
+}
+}
