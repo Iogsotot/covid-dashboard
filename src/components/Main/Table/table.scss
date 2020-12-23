@@ -95,9 +95,19 @@
 
 @media(max-width: 768px) {
   .global-stats {
+    margin-top: 0;
+    
     &__title {
       font-size: 1rem;
       margin-top: 25px;
+    }
+  }
+
+  .full-screen.global-stats {
+    height: 100vh;
+    
+    .global-stats__data {
+      height: 100vh;
     }
   }
 }
