@@ -24,6 +24,7 @@ const RegionStatistic = ({ totalData, perCountryData, setStatusToggle, statusTog
   }
   // perCountryData.sort((a, b) => b.cases - a.cases)
   perCountryData.map((it, i, arr) => {
+    it['todayCasesPer100k'] = 100000 / it.population * it.todayCases
     it['active'] = ''
     if (isItemActive >= 0) return arr[isItemActive]['active'] = 'active'
   })
@@ -49,26 +50,25 @@ const RegionStatistic = ({ totalData, perCountryData, setStatusToggle, statusTog
             <span className="item__planet">🌏</span>
           </li>
         {perCountryData.sort((a, b) => {
-          if (statusToggle) return b.todayCases - a.todayCases
-          if (statusTogglePopulation) return b.casesPerOneMillion - a.casesPerOneMillion
+          if (statusToggle && !statusTogglePopulation) return b.todayCases - a.todayCases
+          else if (statusTogglePopulation && !statusToggle) return b.casesPerOneMillion - a.casesPerOneMillion
+          else if (statusTogglePopulation && statusToggle) return b.todayCasesPer100k - a.todayCasesPer100k
           else return b.cases - a.cases
         }).filter((it) => {
           if (searchValue.length > 0) return it.country.toLowerCase().includes(searchValue.toLowerCase())
           else return it
         }).map((it, i) => {
-          const countryRecoverPer100k = () => !statusToggle ? Math.round(it.recoveredPerOneMillion / 10) : Math.round(100000 / it.population * it.todayRecovered * 10) / 10
-          const countryRecover = () => !statusToggle ? it.recovered : it.todayRecovered
           return (
           <li className={`${it.active} countries__item`} key={i.toString()} onClick={() => {
             setChosenCountry(it.country)
             setItemActive(i)
             setWorldItem('')
           }}>
-            <span className="item__value">{ !statusTogglePopulation && !statusToggle ? it.cases : !statusTogglePopulation && statusToggle ? it.todayCases : !statusTogglePopulation && !statusToggle ? Math.round(it.casesPerOneMillion / 10) * 10 : Math.round(100000 / it.population * it.todayCases * 100) / 100 }</span>
+            <span className="item__value">{ !statusTogglePopulation && !statusToggle ? it.cases : !statusTogglePopulation && statusToggle ? it.todayCases : statusTogglePopulation && !statusToggle ? Math.round(it.casesPerOneMillion / 10) * 10 : Math.round(it.todayCasesPer100k * 100) / 100 }</span>
             <span className="item__name">{ it.country }</span>
             <span className="item__addition-wrap">
-              <span className="item__addition"> Recovers: <span className="recover">{ !statusTogglePopulation && !statusToggle ? it.recovered : !statusTogglePopulation && statusToggle ? it.todayRecovered : !statusTogglePopulation && !statusToggle ? Math.round(it.recoveredPerOneMillion / 10) * 10 : Math.round(100000 / it.population * it.recovered * 100) / 100 }</span></span>
-              <span className="item__addition"> Death: <span className="death">{ !statusTogglePopulation && !statusToggle ? it.deaths : !statusTogglePopulation && statusToggle ? it.todayDeaths : !statusTogglePopulation && !statusToggle ? Math.round(it.deathsPerOneMillion / 10) * 10 : Math.round(100000 / it.population * it.deaths * 100) / 100 }</span></span>
+              <span className="item__addition"> Recovers: <span className="recover">{ !statusTogglePopulation && !statusToggle ? it.recovered : !statusTogglePopulation && statusToggle ? it.todayRecovered : statusTogglePopulation && !statusToggle ? Math.round(it.recoveredPerOneMillion / 10) * 10 : Math.round(100000 / it.population * it.recovered * 100) / 100 }</span></span>
+              <span className="item__addition"> Death: <span className="death">{ !statusTogglePopulation && !statusToggle ? it.deaths : !statusTogglePopulation && statusToggle ? it.todayDeaths : statusTogglePopulation && !statusToggle ? Math.round(it.deathsPerOneMillion / 10) * 10 : Math.round(100000 / it.population * it.deaths * 100) / 100 }</span></span>
             </span>
             <img src={it.countryInfo.flag} width="25" className="item__flag" />
           </li>

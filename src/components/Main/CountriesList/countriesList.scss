@@ -121,6 +121,7 @@
 
 @media(max-width: 768px) {
   .countries {
+    height: 400px;
     &__title {
       font-size: 1rem;
       margin-top: 25px;
@@ -134,5 +135,9 @@
         }
       }
     }
+  }
+
+  .full-screen.countries {
+    height: 100vh;
   }
 }

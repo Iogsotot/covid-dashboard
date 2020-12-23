@@ -22,3 +22,9 @@
 .footer {
   height: 100px;
 }
+
+@media(max-width: 768px) {
+  .main {
+    height: auto;
+  }
+}

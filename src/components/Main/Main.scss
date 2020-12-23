@@ -27,3 +27,18 @@
     width: 50%;
   }
 }
+
+@media (max-width: 768px) {
+  .main {
+    flex-wrap: wrap;
+
+    .tables {
+      width: 100%;
+      height: auto;
+    }
+
+    .map {
+      width: 100%;
+    }
+  }
+}
