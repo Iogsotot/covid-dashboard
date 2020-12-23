@@ -1,14 +1,10 @@
+/* eslint-disable camelcase */
 /* eslint-disable react/prop-types */
-/* eslint-disable */
 import * as am4core from '@amcharts/amcharts4/core';
 import * as am4maps from '@amcharts/amcharts4/maps';
-import * as am4charts from '@amcharts/amcharts4/charts';
-// eslint-disable-next-line camelcase
 import am4geodata_worldLow from '@amcharts/amcharts4-geodata/worldLow';
-// eslint-disable-next-line camelcase
 import am4themes_animated from '@amcharts/amcharts4/themes/animated';
 import React, { Component } from 'react';
-// import Loader from '../../Loader/loader';
 import './Map.scss';
 
 const COLOR_PRIMARY = '#ff0000';
@@ -55,7 +51,7 @@ class Map extends Component {
       } else {
         this.polygonSeries.dataFields.value = 'cases';
       }
-    }
+    };
 
     if (oldProps.isPer100K !== isPer100K) {
       this.absolutePerCapitaSwitch.isActive = isPer100K;
@@ -86,11 +82,11 @@ class Map extends Component {
     } = this.props;
 
     const map = am4core.create('mapchartdiv', am4maps.MapChart);
-    // eslint-disable-next-line camelcase
     map.geodata = am4geodata_worldLow;
     map.projection = new am4maps.projections.Miller();
     map.width = am4core.percent(100);
     map.height = am4core.percent(100);
+    map.padding(10, 5, 5, 5);
 
     // header title
     const header = map.chartContainer.createChild(am4core.Label);
@@ -108,7 +104,7 @@ class Map extends Component {
     absolutePerCapitaSwitch.align = 'right';
     absolutePerCapitaSwitch.valign = 'bottom';
     absolutePerCapitaSwitch.marginRight = 125;
-    absolutePerCapitaSwitch.marginBottom = 20;
+    absolutePerCapitaSwitch.marginBottom = 25;
     absolutePerCapitaSwitch.leftLabel.text = 'Absolute';
     absolutePerCapitaSwitch.leftLabel.fill = am4core.color(COLOR_SECONDARY);
     absolutePerCapitaSwitch.rightLabel.fill = am4core.color(COLOR_SECONDARY);
@@ -125,7 +121,7 @@ class Map extends Component {
     const allTodaySwitch = map.createChild(am4core.SwitchButton);
     allTodaySwitch.align = 'right';
     allTodaySwitch.valign = 'bottom';
-    allTodaySwitch.marginBottom = 20;
+    allTodaySwitch.marginBottom = 25;
     allTodaySwitch.leftLabel.text = 'All';
     allTodaySwitch.leftLabel.fill = am4core.color(COLOR_SECONDARY);
     allTodaySwitch.rightLabel.fill = am4core.color(COLOR_SECONDARY);
@@ -186,9 +182,9 @@ class Map extends Component {
     heatLegend.id = 'heatLegend';
     heatLegend.series = polygonSeries;
     heatLegend.align = 'left';
-    heatLegend.valign = "middle";
+    heatLegend.valign = 'middle';
     heatLegend.marginTop = 100;
-    heatLegend.orientation = "vertical";
+    heatLegend.orientation = 'vertical';
     heatLegend.width = am4core.percent(7);
     heatLegend.height = am4core.percent(85);
     heatLegend.fill = am4core.color(COLOR_SECONDARY);
