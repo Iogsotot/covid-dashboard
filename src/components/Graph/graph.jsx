@@ -1,11 +1,10 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable camelcase */
-/* eslint-disable no-restricted-syntax */
 /* eslint-disable react/prop-types */
 import React, { Component } from 'react';
 import * as am4core from '@amcharts/amcharts4/core';
 import * as am4charts from '@amcharts/amcharts4/charts';
 import am4themes_animated from '@amcharts/amcharts4/themes/animated';
+import FullScreenToggle from '../FullScreenToggle';
 import './graph.scss';
 
 am4core.useTheme(am4themes_animated);
@@ -15,11 +14,11 @@ class Graph extends Component {
     super(props);
     this.state = {
       timelineData: [],
+      isFullScreen: '',
     };
   }
 
   componentDidMount() {
-    const { worldTimeline } = this.props;
     const { timelineData } = this.state;
 
     const chart = am4core.create('chartdiv', am4charts.XYChart);
@@ -68,6 +67,7 @@ class Graph extends Component {
     const createTimelineData = () => {
       const timelineData = [];
 
+      // eslint-disable-next-line no-restricted-syntax
       for (const [key, value] of Object.entries(worldTimeline.cases)) {
         timelineData.push({ date: new Date(key), value });
       }
@@ -86,9 +86,24 @@ class Graph extends Component {
     }
   }
 
+  setIsFullScreen(value) {
+    const newValue = value === '' ? 'full-screen' : '';
+
+    this.setState({
+      isFullScreen: newValue,
+    });
+  }
+
   render() {
+    const { isFullScreen } = this.state;
+
     return (
-      <div className="graph__chartdiv">
+      <div className={`${isFullScreen} graph__chartdiv`}>
+        <div className="full-screen-toggle__wrapper">
+          <FullScreenToggle
+            setIsFullScreen={() => this.setIsFullScreen(isFullScreen)}
+          />
+        </div>
         <div
           id="chartdiv"
           style={{ width: '100%', height: '100%', minHeight: '125px' }}

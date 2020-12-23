@@ -6,3 +6,13 @@
   background-color: $gray-800;
   border-radius: 5px;
 }
+
+.full-screen.graph__chartdiv {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  // height: 100vh;
+  height: calc(100vh - 100px);
+  z-index: 100;
+}
