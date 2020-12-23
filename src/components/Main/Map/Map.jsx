@@ -107,15 +107,15 @@ class Map extends Component {
     const absolutePerCapitaSwitch = map.createChild(am4core.SwitchButton);
     absolutePerCapitaSwitch.align = 'right';
     absolutePerCapitaSwitch.valign = 'bottom';
-    absolutePerCapitaSwitch.marginRight = 125;
-    absolutePerCapitaSwitch.marginBottom = 25;
+    absolutePerCapitaSwitch.marginRight = 0;
+    // absolutePerCapitaSwitch.marginBottom = 10;
     absolutePerCapitaSwitch.leftLabel.text = 'Absolute';
     absolutePerCapitaSwitch.leftLabel.fill = am4core.color(COLOR_SECONDARY);
     absolutePerCapitaSwitch.rightLabel.fill = am4core.color(COLOR_SECONDARY);
     absolutePerCapitaSwitch.rightLabel.text = 'Per 100K';
     absolutePerCapitaSwitch.rightLabel.interactionsEnabled = true;
     absolutePerCapitaSwitch.rightLabel.tooltipText = 'When calculating max value, countries with population less than 100.000 are not included.';
-    absolutePerCapitaSwitch.verticalCenter = 'bottom';
+    // absolutePerCapitaSwitch.verticalCenter = 'bottom';
     absolutePerCapitaSwitch.events.on('toggled', () => {
       handleSwitchAbsolutePer100K(absolutePerCapitaSwitch.isActive);
     });
@@ -125,7 +125,8 @@ class Map extends Component {
     const allTodaySwitch = map.createChild(am4core.SwitchButton);
     allTodaySwitch.align = 'right';
     allTodaySwitch.valign = 'bottom';
-    allTodaySwitch.marginBottom = 25;
+    allTodaySwitch.marginRight = 190;
+    // allTodaySwitch.marginBottom = 10;
     allTodaySwitch.leftLabel.text = 'All';
     allTodaySwitch.leftLabel.fill = am4core.color(COLOR_SECONDARY);
     allTodaySwitch.rightLabel.fill = am4core.color(COLOR_SECONDARY);
@@ -186,16 +187,13 @@ class Map extends Component {
     heatLegend.id = 'heatLegend';
     heatLegend.series = polygonSeries;
     heatLegend.align = 'left';
-    heatLegend.valign = 'middle';
-    heatLegend.marginTop = 100;
+    heatLegend.valign = 'bottom';
+    heatLegend.marginBottom = 30;
     heatLegend.orientation = 'vertical';
     heatLegend.width = am4core.percent(7);
-    heatLegend.height = am4core.percent(85);
+    heatLegend.height = am4core.percent(50);
     heatLegend.fill = am4core.color(COLOR_SECONDARY);
-    // heatLegend.marginRight = am4core.percent(2);
-    // heatLegend.background.fill = am4core.color(COLOR_SECONDARY);
     heatLegend.color = am4core.color(COLOR_SECONDARY);
-    // heatLegend.background.fillOpacity = 0.05;
     heatLegend.padding(5, 5, 5, 5);
     heatLegend.valueAxis.fontSize = 14;
     heatLegend.valueAxis.logarithmic = true;

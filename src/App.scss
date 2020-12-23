@@ -11,9 +11,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  // justify-content: center;
 }
-
 
 .main {
   height: calc(100vh - 100px);
@@ -23,7 +21,7 @@
   height: 100px;
 }
 
-@media(max-width: 768px) {
+@media (max-width: 768px) {
   .main {
     height: auto;
   }

@@ -6,18 +6,18 @@ import './index.scss';
 const StatusToggles = ({ setStatusToggle, statusToggle, statusTogglePopulation, setStatusTogglePopulation }) => (
   <div className="global-stats__toggles">
     <StatusToggle
-    className={'total-today__toggle'}
-    statusFirst={'All'} 
-    statusSecond={'Today'}
-    setStatusToggle={setStatusToggle}
-    statusToggle={statusToggle}
+      className={'total-today__toggle'}
+      statusFirst={'All'}
+      statusSecond={'Today'}
+      setStatusToggle={setStatusToggle}
+      statusToggle={statusToggle}
     />
-    <StatusToggle 
-    className={'all-per__toggle'}
-    statusFirst={'Absolute'} 
-    statusSecond={'Per 100K'}
-    statusTogglePopulation={statusTogglePopulation}
-    setStatusTogglePopulation={setStatusTogglePopulation}
+    <StatusToggle
+      className={'all-per__toggle'}
+      statusFirst={'Absolute'}
+      statusSecond={'Per 100K'}
+      statusTogglePopulation={statusTogglePopulation}
+      setStatusTogglePopulation={setStatusTogglePopulation}
     />
   </div>
 );
