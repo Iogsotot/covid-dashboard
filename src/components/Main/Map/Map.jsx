@@ -12,25 +12,15 @@ const COLOR_PRIMARY = '#ff0000';
 const COLOR_SECONDARY = '#ffffff';
 const COLOR_HOVER = 'rgba(125,125,125,0.9)';
 
-// eslint-disable-next-line no-unused-vars
-const numberFormatter = new am4core.NumberFormatter();
-
-// eslint-disable-next-line no-unused-vars
-const backgroundColor = am4core.color('#1e2128');
-const activeColor = am4core.color('#ff8726');
-const confirmedColor = am4core.color('#d21a1a');
-const recoveredColor = am4core.color('#45d21a');
-const deathsColor = am4core.color('#1c5fe5');
+const COLOR_CASES = am4core.color('#ff8726');
+const COLOR_RECOVERED = am4core.color('#45d21a');
+const COLOR_DEATHS = am4core.color('#1c5fe5');
 // for an easier access by key
-// eslint-disable-next-line no-unused-vars
 const colors = {
-  active: activeColor, confirmed: confirmedColor, recovered: recoveredColor, deaths: deathsColor,
+  active: COLOR_CASES,
+  recovered: COLOR_RECOVERED,
+  deaths: COLOR_DEATHS,
 };
-// const countryColor = am4core.color('#3b3b3b');
-// const countryStrokeColor = am4core.color('#000000');
-// const buttonStrokeColor = am4core.color('#ffffff');
-// const countryHoverColor = am4core.color('#1b1b1b');
-// const activeCountryColor = am4core.color('#0f0f0f');
 
 am4core.useTheme(am4themes_animated);
 
@@ -72,8 +62,6 @@ class Map extends Component {
     if (oldProps.countryData !== countryData) {
       this.polygonSeries.data = countryData;
     }
-
-    // console.log(this.map.zoomGeoPoint);
   }
 
   componentWillUnmount() {
@@ -119,15 +107,15 @@ class Map extends Component {
     const absolutePerCapitaSwitch = map.createChild(am4core.SwitchButton);
     absolutePerCapitaSwitch.align = 'right';
     absolutePerCapitaSwitch.valign = 'bottom';
-    absolutePerCapitaSwitch.marginRight = 125;
-    absolutePerCapitaSwitch.marginBottom = 25;
+    absolutePerCapitaSwitch.marginRight = 0;
+    // absolutePerCapitaSwitch.marginBottom = 10;
     absolutePerCapitaSwitch.leftLabel.text = 'Absolute';
     absolutePerCapitaSwitch.leftLabel.fill = am4core.color(COLOR_SECONDARY);
     absolutePerCapitaSwitch.rightLabel.fill = am4core.color(COLOR_SECONDARY);
     absolutePerCapitaSwitch.rightLabel.text = 'Per 100K';
     absolutePerCapitaSwitch.rightLabel.interactionsEnabled = true;
     absolutePerCapitaSwitch.rightLabel.tooltipText = 'When calculating max value, countries with population less than 100.000 are not included.';
-    absolutePerCapitaSwitch.verticalCenter = 'bottom';
+    // absolutePerCapitaSwitch.verticalCenter = 'bottom';
     absolutePerCapitaSwitch.events.on('toggled', () => {
       handleSwitchAbsolutePer100K(absolutePerCapitaSwitch.isActive);
     });
@@ -137,7 +125,8 @@ class Map extends Component {
     const allTodaySwitch = map.createChild(am4core.SwitchButton);
     allTodaySwitch.align = 'right';
     allTodaySwitch.valign = 'bottom';
-    allTodaySwitch.marginBottom = 25;
+    allTodaySwitch.marginRight = 190;
+    // allTodaySwitch.marginBottom = 10;
     allTodaySwitch.leftLabel.text = 'All';
     allTodaySwitch.leftLabel.fill = am4core.color(COLOR_SECONDARY);
     allTodaySwitch.rightLabel.fill = am4core.color(COLOR_SECONDARY);
@@ -198,16 +187,13 @@ class Map extends Component {
     heatLegend.id = 'heatLegend';
     heatLegend.series = polygonSeries;
     heatLegend.align = 'left';
-    heatLegend.valign = 'middle';
-    heatLegend.marginTop = 100;
+    heatLegend.valign = 'bottom';
+    heatLegend.marginBottom = 30;
     heatLegend.orientation = 'vertical';
     heatLegend.width = am4core.percent(7);
-    heatLegend.height = am4core.percent(85);
+    heatLegend.height = am4core.percent(50);
     heatLegend.fill = am4core.color(COLOR_SECONDARY);
-    // heatLegend.marginRight = am4core.percent(2);
-    // heatLegend.background.fill = am4core.color(COLOR_SECONDARY);
     heatLegend.color = am4core.color(COLOR_SECONDARY);
-    // heatLegend.background.fillOpacity = 0.05;
     heatLegend.padding(5, 5, 5, 5);
     heatLegend.valueAxis.fontSize = 14;
     heatLegend.valueAxis.logarithmic = true;
@@ -280,7 +266,7 @@ class Map extends Component {
         <div
           id="mapchartdiv"
           style={{
-            width: '100%', height: '100%', minHeight: '400px',
+            width: '100%', height: '100%', minHeight: '225px',
           }}
         />
       </div>
