@@ -25,7 +25,7 @@ class Graph extends Component {
     const chart = am4core.create('chartdiv', am4charts.XYChart);
 
     chart.fontSize = '0.8em';
-    chart.paddingRight = 10;
+    chart.paddingRight = 20;
     chart.paddingLeft = 0;
     chart.maskBullets = false;
     chart.zoomOutButton.disabled = true;
