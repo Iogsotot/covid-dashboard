@@ -42,7 +42,7 @@ const Table = ({ totalData, perCountryData, setStatusToggle, statusToggle, statu
       />
       <div className="global-stats__data">
         <h3 className="global-stats__title">{title()}</h3>
-        <div class="global-stats__wrapper">
+        <div className="global-stats__wrapper">
           <div className="global-cases">{!statusTogglePopulation ? displayCases() : casesPer100k()}</div>
           <div className="global-deaths">deaths: <span>{!statusTogglePopulation ? displayDeath() : deathPer100k()}</span></div>
           <div className="global-recovered">recovered: <span>{!statusTogglePopulation ? recovered() : recoveredPer100k()}</span></div>
