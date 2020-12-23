@@ -57,11 +57,16 @@
   }
 }
 
+.global-stats__wrapper {
+  min-height: 80px;
+}
+
 .full-screen.global-stats {
   position: fixed;
   left: 0;
   top: -5px;
   width: 100%;
+  // height: 100vh;
   height: calc(100vh - 90px);
   z-index: 1000;
 

@@ -6,7 +6,7 @@ import './table.scss';
 
 const Table = ({ totalData, perCountryData, setStatusToggle, statusToggle, statusTogglePopulation, setStatusTogglePopulation, chosenCountry }) => {
   const [isFullScreen, setIsFullScreen] = React.useState('')
-  const title = () =>  {
+  const title = () => {
     if (chosenCountry === 'Global') return !statusToggle ? 'World Global Cases:' : 'World Today Cases:'
     else return !statusToggle ? `${chosenCountry} Global Cases:` : `${chosenCountry} Today Cases:`
   }
@@ -24,7 +24,7 @@ const Table = ({ totalData, perCountryData, setStatusToggle, statusToggle, statu
     else return !statusToggle ? chosenCountryData.recovered : chosenCountryData.todayRecovered
   }
   const casesPer100k = () => {
-    if (chosenCountry === 'Global') return !statusToggle ? Math.round(totalData.casesPerOneMillion / 10) :  Math.round(100000 / totalData.population * totalData.todayCases * 10) / 10
+    if (chosenCountry === 'Global') return !statusToggle ? Math.round(totalData.casesPerOneMillion / 10) : Math.round(100000 / totalData.population * totalData.todayCases * 10) / 10
     else return !statusToggle ? Math.round(chosenCountryData.casesPerOneMillion / 10) : Math.round(100000 / chosenCountryData.population * chosenCountryData.todayCases * 10) / 10
   }
   const deathPer100k = () => {
@@ -42,9 +42,11 @@ const Table = ({ totalData, perCountryData, setStatusToggle, statusToggle, statu
       />
       <div className="global-stats__data">
         <h3 className="global-stats__title">{title()}</h3>
-        <div className="global-cases">{!statusTogglePopulation ? displayCases() : casesPer100k() }</div>
-        <div className="global-deaths">deaths: <span>{!statusTogglePopulation ? displayDeath() : deathPer100k()}</span></div>
-        <div className="global-recovered">recovered: <span>{!statusTogglePopulation ? recovered() : recoveredPer100k()}</span></div>
+        <div class="global-stats__wrapper">
+          <div className="global-cases">{!statusTogglePopulation ? displayCases() : casesPer100k()}</div>
+          <div className="global-deaths">deaths: <span>{!statusTogglePopulation ? displayDeath() : deathPer100k()}</span></div>
+          <div className="global-recovered">recovered: <span>{!statusTogglePopulation ? recovered() : recoveredPer100k()}</span></div>
+        </div>
         <div className="global-stats__toggles">
           <StatusToggles
             setStatusToggle={setStatusToggle}
@@ -55,7 +57,7 @@ const Table = ({ totalData, perCountryData, setStatusToggle, statusToggle, statu
         </div>
         <div className="update-info">
           <h4 className="update-info__title">Last Update at: </h4>
-          <p className="update-info__date">{`${new Date().getFullYear()} ${new Date().getMonth()} ${new Date().getDate()}, ${new Date().getHours()}:${new Date().getMinutes() < 10 ? '0' + new Date().getMinutes() : new Date().getMinutes() }`}</p>
+          <p className="update-info__date">{`${new Date().getFullYear()} ${new Date().getMonth()} ${new Date().getDate()}, ${new Date().getHours()}:${new Date().getMinutes() < 10 ? '0' + new Date().getMinutes() : new Date().getMinutes()}`}</p>
         </div>
       </div>
     </section>
