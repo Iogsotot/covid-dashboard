@@ -5,6 +5,7 @@ import * as am4maps from '@amcharts/amcharts4/maps';
 import am4geodata_worldLow from '@amcharts/amcharts4-geodata/worldLow';
 import am4themes_animated from '@amcharts/amcharts4/themes/animated';
 import React, { Component } from 'react';
+import FullScreenToggle from '../../FullScreenToggle';
 import './Map.scss';
 
 const COLOR_PRIMARY = '#ff0000';
@@ -34,6 +35,13 @@ const colors = {
 am4core.useTheme(am4themes_animated);
 
 class Map extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isFullScreen: '',
+    };
+  }
+
   componentDidMount() {
     this.createMap();
   }
@@ -72,6 +80,14 @@ class Map extends Component {
     if (this.map) {
       this.map.dispose();
     }
+  }
+
+  setIsFullScreen(value) {
+    const newValue = value === '' ? 'full-screen' : '';
+
+    this.setState({
+      isFullScreen: newValue,
+    });
   }
 
   createMap() {
@@ -252,8 +268,15 @@ class Map extends Component {
   }
 
   render() {
+    const { isFullScreen } = this.state;
+
     return (
-      <div className="map__chrtdiv">
+      <div className={`${isFullScreen} map__chrtdiv`} ref={this.divRef}>
+        <div className="full-screen-toggle__wrapper">
+          <FullScreenToggle
+            setIsFullScreen={() => this.setIsFullScreen(isFullScreen)}
+          />
+        </div>
         <div
           id="mapchartdiv"
           style={{
