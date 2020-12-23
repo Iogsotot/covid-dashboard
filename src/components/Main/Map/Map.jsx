@@ -106,15 +106,16 @@ class Map extends Component {
     // switch between Absolute and Per 100K
     const absolutePerCapitaSwitch = map.createChild(am4core.SwitchButton);
     absolutePerCapitaSwitch.align = 'right';
+    absolutePerCapitaSwitch.valign = 'bottom';
     absolutePerCapitaSwitch.marginRight = 125;
-    absolutePerCapitaSwitch.y = 10;
+    absolutePerCapitaSwitch.marginBottom = 20;
     absolutePerCapitaSwitch.leftLabel.text = 'Absolute';
     absolutePerCapitaSwitch.leftLabel.fill = am4core.color(COLOR_SECONDARY);
     absolutePerCapitaSwitch.rightLabel.fill = am4core.color(COLOR_SECONDARY);
     absolutePerCapitaSwitch.rightLabel.text = 'Per 100K';
     absolutePerCapitaSwitch.rightLabel.interactionsEnabled = true;
     absolutePerCapitaSwitch.rightLabel.tooltipText = 'When calculating max value, countries with population less than 100.000 are not included.';
-    absolutePerCapitaSwitch.verticalCenter = 'top';
+    absolutePerCapitaSwitch.verticalCenter = 'bottom';
     absolutePerCapitaSwitch.events.on('toggled', () => {
       handleSwitchAbsolutePer100K(absolutePerCapitaSwitch.isActive);
     });
@@ -123,13 +124,14 @@ class Map extends Component {
     // switch between All and today cases
     const allTodaySwitch = map.createChild(am4core.SwitchButton);
     allTodaySwitch.align = 'right';
-    allTodaySwitch.y = 10;
+    allTodaySwitch.valign = 'bottom';
+    allTodaySwitch.marginBottom = 20;
     allTodaySwitch.leftLabel.text = 'All';
     allTodaySwitch.leftLabel.fill = am4core.color(COLOR_SECONDARY);
     allTodaySwitch.rightLabel.fill = am4core.color(COLOR_SECONDARY);
     allTodaySwitch.rightLabel.text = 'Today';
     allTodaySwitch.rightLabel.interactionsEnabled = true;
-    allTodaySwitch.verticalCenter = 'top';
+    allTodaySwitch.verticalCenter = 'bottom';
     allTodaySwitch.events.on('toggled', () => {
       handleSwitchAllToday(allTodaySwitch.isActive);
     });
@@ -143,10 +145,7 @@ class Map extends Component {
     map.tooltip.getStrokeFromObject = false;
 
     map.deltaLongitude = -10;
-    // map.homeGeoPoint = {
-    //   latitude: -2,
-    //   longitude: 10
-    // };
+    // map.homeGeoPoint = { longitude: 0, latitude: -2 };
 
     const polygonSeries = map.series.push(new am4maps.MapPolygonSeries());
     this.polygonSeries = polygonSeries;
@@ -186,16 +185,19 @@ class Map extends Component {
     const heatLegend = map.createChild(am4maps.HeatLegend);
     heatLegend.id = 'heatLegend';
     heatLegend.series = polygonSeries;
-    heatLegend.align = 'right';
-    heatLegend.valign = 'top';
-    heatLegend.marginTop = 50;
-    heatLegend.width = am4core.percent(98);
+    heatLegend.align = 'left';
+    heatLegend.valign = "middle";
+    heatLegend.marginTop = 100;
+    heatLegend.orientation = "vertical";
+    heatLegend.width = am4core.percent(7);
+    heatLegend.height = am4core.percent(85);
     heatLegend.fill = am4core.color(COLOR_SECONDARY);
-    heatLegend.marginRight = am4core.percent(1);
-    heatLegend.background.fill = am4core.color(COLOR_SECONDARY);
-    heatLegend.background.fillOpacity = 0.05;
+    // heatLegend.marginRight = am4core.percent(2);
+    // heatLegend.background.fill = am4core.color(COLOR_SECONDARY);
+    heatLegend.color = am4core.color(COLOR_SECONDARY);
+    // heatLegend.background.fillOpacity = 0.05;
     heatLegend.padding(5, 5, 5, 5);
-    heatLegend.valueAxis.fontSize = 12;
+    heatLegend.valueAxis.fontSize = 14;
     heatLegend.valueAxis.logarithmic = true;
 
     // Set up custom heat map legend labels using axis ranges
