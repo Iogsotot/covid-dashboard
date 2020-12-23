@@ -18,3 +18,9 @@
   height: calc(100vh - 100px);
   z-index: 100;
 }
+
+@media(max-width: 768px) {
+  .full-screen.map__chrtdiv {
+    height: 100vh;
+  }
+}

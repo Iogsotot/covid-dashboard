@@ -16,3 +16,9 @@
   height: calc(100vh - 100px);
   z-index: 100;
 }
+
+@media(max-width: 768px) {
+  .full-screen.graph__chartdiv {
+    height: 100vh;
+  }
+}
