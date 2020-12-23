@@ -12,25 +12,15 @@ const COLOR_PRIMARY = '#ff0000';
 const COLOR_SECONDARY = '#ffffff';
 const COLOR_HOVER = 'rgba(125,125,125,0.9)';
 
-// eslint-disable-next-line no-unused-vars
-const numberFormatter = new am4core.NumberFormatter();
-
-// eslint-disable-next-line no-unused-vars
-const backgroundColor = am4core.color('#1e2128');
-const activeColor = am4core.color('#ff8726');
-const confirmedColor = am4core.color('#d21a1a');
-const recoveredColor = am4core.color('#45d21a');
-const deathsColor = am4core.color('#1c5fe5');
+const COLOR_CASES = am4core.color('#ff8726');
+const COLOR_RECOVERED = am4core.color('#45d21a');
+const COLOR_DEATHS = am4core.color('#1c5fe5');
 // for an easier access by key
-// eslint-disable-next-line no-unused-vars
 const colors = {
-  active: activeColor, confirmed: confirmedColor, recovered: recoveredColor, deaths: deathsColor,
+  active: COLOR_CASES,
+  recovered: COLOR_RECOVERED,
+  deaths: COLOR_DEATHS,
 };
-// const countryColor = am4core.color('#3b3b3b');
-// const countryStrokeColor = am4core.color('#000000');
-// const buttonStrokeColor = am4core.color('#ffffff');
-// const countryHoverColor = am4core.color('#1b1b1b');
-// const activeCountryColor = am4core.color('#0f0f0f');
 
 am4core.useTheme(am4themes_animated);
 
@@ -72,8 +62,6 @@ class Map extends Component {
     if (oldProps.countryData !== countryData) {
       this.polygonSeries.data = countryData;
     }
-
-    // console.log(this.map.zoomGeoPoint);
   }
 
   componentWillUnmount() {
