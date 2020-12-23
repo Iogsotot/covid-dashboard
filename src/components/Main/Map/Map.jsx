@@ -86,7 +86,7 @@ class Map extends Component {
     map.projection = new am4maps.projections.Miller();
     map.width = am4core.percent(100);
     map.height = am4core.percent(100);
-    map.padding(10, 5, 5, 5);
+    map.padding(0, 5, 5, 5);
 
     // header title
     const header = map.chartContainer.createChild(am4core.Label);
