@@ -15,7 +15,7 @@ const COLOR_HOVER = 'rgba(125,125,125,0.9)';
 const COLOR_CASES = am4core.color('#ff8726');
 const COLOR_RECOVERED = am4core.color('#45d21a');
 const COLOR_DEATHS = am4core.color('#1c5fe5');
-// for an easier access by key
+
 const colors = {
   active: COLOR_CASES,
   recovered: COLOR_RECOVERED,

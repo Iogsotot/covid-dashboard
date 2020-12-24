@@ -1,4 +1,4 @@
-/* eslint-disable */
+/* eslint-disable react/prop-types */
 import React, { useState } from 'react';
 import Map from './Map';
 import CountriesList from './CountriesList/countriesList';
