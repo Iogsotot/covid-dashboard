@@ -108,14 +108,12 @@ class Map extends Component {
     absolutePerCapitaSwitch.align = 'right';
     absolutePerCapitaSwitch.valign = 'bottom';
     absolutePerCapitaSwitch.marginRight = 0;
-    // absolutePerCapitaSwitch.marginBottom = 10;
     absolutePerCapitaSwitch.leftLabel.text = 'Absolute';
     absolutePerCapitaSwitch.leftLabel.fill = am4core.color(COLOR_SECONDARY);
     absolutePerCapitaSwitch.rightLabel.fill = am4core.color(COLOR_SECONDARY);
     absolutePerCapitaSwitch.rightLabel.text = 'Per 100K';
     absolutePerCapitaSwitch.rightLabel.interactionsEnabled = true;
     absolutePerCapitaSwitch.rightLabel.tooltipText = 'When calculating max value, countries with population less than 100.000 are not included.';
-    // absolutePerCapitaSwitch.verticalCenter = 'bottom';
     absolutePerCapitaSwitch.events.on('toggled', () => {
       handleSwitchAbsolutePer100K(absolutePerCapitaSwitch.isActive);
     });
@@ -126,7 +124,6 @@ class Map extends Component {
     allTodaySwitch.align = 'right';
     allTodaySwitch.valign = 'bottom';
     allTodaySwitch.marginRight = 190;
-    // allTodaySwitch.marginBottom = 10;
     allTodaySwitch.leftLabel.text = 'All';
     allTodaySwitch.leftLabel.fill = am4core.color(COLOR_SECONDARY);
     allTodaySwitch.rightLabel.fill = am4core.color(COLOR_SECONDARY);
@@ -146,7 +143,6 @@ class Map extends Component {
     map.tooltip.getStrokeFromObject = false;
 
     map.deltaLongitude = -10;
-    // map.homeGeoPoint = { longitude: 0, latitude: -2 };
 
     const polygonSeries = map.series.push(new am4maps.MapPolygonSeries());
     this.polygonSeries = polygonSeries;
@@ -179,7 +175,6 @@ class Map extends Component {
     polygonSeries.data = countryData;
     polygonSeries.dataFields.value = 'cases';
     map.zoomControl = new am4maps.ZoomControl();
-    // map.zoomControl.marginBottom = 50;
     map.zoomControl.slider.height = 100;
     map.zoomControl.valign = 'middle';
 
