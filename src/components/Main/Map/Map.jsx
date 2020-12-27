@@ -5,6 +5,7 @@ import * as am4maps from '@amcharts/amcharts4/maps';
 import am4geodata_worldLow from '@amcharts/amcharts4-geodata/worldLow';
 import am4themes_animated from '@amcharts/amcharts4/themes/animated';
 import React, { Component } from 'react';
+import propTypes from 'prop-types';
 import FullScreenToggle from '../../FullScreenToggle';
 import './Map.scss';
 
@@ -268,5 +269,19 @@ class Map extends Component {
     );
   }
 }
+
+Map.defaultProps = {
+  countryData: [],
+  isPer100K: false,
+  isToday: false,
+};
+
+Map.propTypes = {
+  countryData: propTypes.arrayOf(propTypes.object),
+  isPer100K: propTypes.bool,
+  isToday: propTypes.bool,
+  handleSwitchAbsolutePer100K: propTypes.func.isRequired,
+  handleSwitchAllToday: propTypes.func.isRequired,
+};
 
 export default Map;
