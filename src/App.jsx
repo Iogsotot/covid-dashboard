@@ -8,7 +8,7 @@ import './App.scss';
 const App = () => {
   const [perCountryData, setPerCountryData] = useState([]);
   const [totalData, setTotalData] = useState([]);
-  const [worldTimeline, setWorldTimeline] = useState([]);
+  const [worldTimeline, setWorldTimeline] = useState({});
   const [loaderWaitCountryData, setLoaderWaitCountryData] = useState(true);
   const [loaderWaitTotalData, setLoaderWaitTotalData] = useState(true);
 
