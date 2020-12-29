@@ -14,14 +14,6 @@ const Footer = () => (
         <div className="students">
           <h4 className="footer__title"> Students:</h4>
           <ul className="students-list">
-
-            <li className="students__item">
-              <a className="students-list__link link" href="https://github.com/Iogsotot">
-                <div className="icon icon--github" />
-                Anna Justus
-              </a>
-
-            </li>
             <li className="students__item">
               <a className="students-list__link link" href="https://github.com/IgorOsa">
                 <div className="icon icon--github" />
