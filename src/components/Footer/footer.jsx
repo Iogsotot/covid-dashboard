@@ -1,10 +1,9 @@
-/* eslint-disable */
 import React from 'react';
 import './footer.scss';
 
 const Footer = () => (
   <footer className="footer">
-    <div className="section-inner">
+    <div className="footer-wrapper">
 
       <nav className="footer-cols">
         <div className="copyright">
@@ -15,25 +14,17 @@ const Footer = () => (
         <div className="students">
           <h4 className="footer__title"> Students:</h4>
           <ul className="students-list">
-
-            <li className="students__item">
-              <a className="students-list__link link" href="https://github.com/Iogsotot">
-                <div className="icon icon--github"></div>
-                Anna Justus
-              </a>
-
-            </li>
             <li className="students__item">
               <a className="students-list__link link" href="https://github.com/IgorOsa">
-                <div className="icon icon--github"></div>
+                <div className="icon icon--github" />
                 Igor Osadchyi
-           </a>
+              </a>
             </li>
             <li className="students__item">
               <a className="students-list__link link" href="https://github.com/Kelevrra">
-                <div className="icon icon--github"></div>
+                <div className="icon icon--github" />
                 Alex Kelevrra
-           </a>
+              </a>
             </li>
           </ul>
         </div>
@@ -42,7 +33,7 @@ const Footer = () => (
             Mentor:
           </h4>
           <a className="mentor__link link" href="https://github.com/cardamo">
-            <div className="icon icon--github"></div>
+            <div className="icon icon--github" />
             Artёm Sinicyn
           </a>
         </div>

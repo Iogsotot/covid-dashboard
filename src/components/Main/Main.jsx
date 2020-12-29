@@ -1,5 +1,5 @@
-/* eslint-disable */
 import React, { useState } from 'react';
+import propTypes from 'prop-types';
 import Map from './Map';
 import CountriesList from './CountriesList/countriesList';
 import Table from './Table/table';
@@ -45,6 +45,12 @@ const Main = ({ perCountryData, totalData, worldTimeline }) => {
       </div>
     </main>
   );
+};
+
+Main.propTypes = {
+  perCountryData: propTypes.arrayOf(propTypes.object).isRequired,
+  totalData: propTypes.arrayOf(propTypes.object).isRequired,
+  worldTimeline: propTypes.objectOf(propTypes.object).isRequired,
 };
 
 export default Main;

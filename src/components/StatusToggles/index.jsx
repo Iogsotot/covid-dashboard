@@ -1,21 +1,23 @@
-/* eslint-disable */
+/* eslint-disable react/prop-types */
 import React from 'react';
 import StatusToggle from './StatusToggle';
 import './index.scss';
 
-const StatusToggles = ({ setStatusToggle, statusToggle, statusTogglePopulation, setStatusTogglePopulation }) => (
+const StatusToggles = ({
+  setStatusToggle, statusToggle, statusTogglePopulation, setStatusTogglePopulation,
+}) => (
   <div className="global-stats__toggles">
     <StatusToggle
-      className={'total-today__toggle'}
-      statusFirst={'All'}
-      statusSecond={'Today'}
+      className="total-today__toggle"
+      statusFirst="All"
+      statusSecond="Today"
       setStatusToggle={setStatusToggle}
       statusToggle={statusToggle}
     />
     <StatusToggle
-      className={'all-per__toggle'}
-      statusFirst={'Absolute'}
-      statusSecond={'Per 100K'}
+      className="all-per__toggle"
+      statusFirst="Absolute"
+      statusSecond="Per 100K"
       statusTogglePopulation={statusTogglePopulation}
       setStatusTogglePopulation={setStatusTogglePopulation}
     />
