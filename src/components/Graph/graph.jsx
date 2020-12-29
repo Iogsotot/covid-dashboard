@@ -73,10 +73,6 @@ class Graph extends Component {
 }
 
 Graph.propTypes = {
-  worldTimeline: {},
-};
-
-Graph.propTypes = {
   worldTimeline: propTypes.objectOf(propTypes.object).isRequired,
 };
 
