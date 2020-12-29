@@ -45,7 +45,7 @@ class Graph extends Component {
     }
   }
 
-  setIsFullScreen(value) {
+  toggleFullScreen(value) {
     const newValue = value === '' ? 'full-screen' : '';
 
     this.setState({
@@ -60,7 +60,7 @@ class Graph extends Component {
       <div className={`${isFullScreen} graph__chartdiv`}>
         <div className="full-screen-toggle__wrapper">
           <FullScreenToggle
-            setIsFullScreen={() => this.setIsFullScreen(isFullScreen)}
+            setIsFullScreen={() => this.toggleFullScreen(isFullScreen)}
           />
         </div>
         <div
