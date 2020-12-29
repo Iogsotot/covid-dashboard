@@ -1,5 +1,5 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
+import propTypes from 'prop-types';
 import Map from './Map';
 import Graph from '../Graph/graph';
 import './index.scss';
@@ -40,5 +40,14 @@ class MapContainer extends React.PureComponent {
     );
   }
 }
+
+MapContainer.propTypes = {
+  perCountryData: propTypes.arrayOf(propTypes.object).isRequired,
+  isPer100K: propTypes.bool.isRequired,
+  isToday: propTypes.bool.isRequired,
+  handleSwitchAbsolutePer100K: propTypes.func.isRequired,
+  handleSwitchAllToday: propTypes.func.isRequired,
+  worldTimeline: propTypes.objectOf(propTypes.object).isRequired,
+};
 
 export default MapContainer;
