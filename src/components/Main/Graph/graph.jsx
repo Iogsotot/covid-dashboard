@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import propTypes from 'prop-types';
-import FullScreenToggle from '../FullScreenToggle';
+import FullScreenToggle from '../../FullScreenToggle';
 import createGraph from './createGraph';
 import './graph.scss';
 

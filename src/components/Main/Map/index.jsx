@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import Map from './Map';
-import Graph from '../../Graph/graph';
+import Graph from '../Graph/graph';
 import './index.scss';
 
 class MapContainer extends React.PureComponent {
