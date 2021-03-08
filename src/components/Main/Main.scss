@@ -1,0 +1,44 @@
+* {
+  box-sizing: border-box;
+}
+
+.main {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+}
+
+.map {
+  width: 65%;
+}
+
+.tables {
+  width: 35%;
+  height: calc(100vh - 100px);
+  padding-right: 5px;
+}
+
+@media (max-width: 920px) {
+  .tables {
+    width: 50%;
+  }
+  .map {
+    width: 50%;
+  }
+}
+
+@media (max-width: 768px) {
+  .main {
+    flex-wrap: wrap;
+
+    .tables {
+      width: 100%;
+      height: auto;
+    }
+
+    .map {
+      width: 100%;
+    }
+  }
+}

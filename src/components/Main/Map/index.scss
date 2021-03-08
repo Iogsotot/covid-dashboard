@@ -1,0 +1,18 @@
+@import '../../../../src/shared/variables';
+
+.charts-wrapper {
+  height: 100%;
+  min-height: 550px;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.full-screen-toggle {
+  z-index: 10;
+}
+
+.full-screen-toggle__wrapper {
+  position: relative;
+}

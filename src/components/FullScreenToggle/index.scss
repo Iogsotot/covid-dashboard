@@ -1,0 +1,27 @@
+@import "../../shared/variables";
+
+.full-screen-toggle {
+    width: 12px;
+    height: 12px;
+    background: url("../../assets/img/expand-3.svg") no-repeat;
+    border: none;
+    outline: none;
+    opacity: .6;
+    position: absolute;
+    top: 7px;
+    left: 7px;
+    &:hover {
+        opacity: 1;
+        width: 15px;
+        height: 15px;
+        top: 6px;
+        left: 6px;
+    }
+    &:focus {
+        opacity: 1;
+    }
+}
+
+.full-screen .full-screen-toggle {
+    background: url("../../assets/img/exit-full-screen.svg") no-repeat;
+}

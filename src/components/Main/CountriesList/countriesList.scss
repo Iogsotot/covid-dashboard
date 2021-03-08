@@ -1,0 +1,142 @@
+@import '../../../shared/variables';
+
+* {
+  box-sizing: border-box;
+}
+
+.countries {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin: 0 0 5px;
+  height: calc(100vh - 380px);
+
+  border: 1px solid $gray-700;
+  background-color: $gray-800;
+  border-radius: 5px;
+
+  .country-search {
+    background-color: $gray-600;
+    color: $gray-200;
+    &::placeholder {
+      color: $gray-800;
+    }
+  }
+
+  &__title {
+    font-size: 20px;
+    margin: 10px 0 7px 0;
+  }
+
+  &__value {
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+
+  .countries__list {
+    margin: 10px 0 5px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    list-style: none;
+    padding-left: 0;
+
+    .countries__item.active {
+      .item__name {
+        font-weight: 500;
+        color: $gray-100;
+      }
+    }
+
+    .countries__item {
+      position: relative;
+      line-height: 1.5;
+      border-bottom: 1px solid $gray-500;
+      text-align: left;
+      padding-left: 10px;
+
+      .item__value {
+        margin-right: 5px;
+        color: $red;
+      }
+
+      .item__flag,
+      .item__planet {
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        transform: translate(0, -50%);
+      }
+
+      .item__planet {
+        right: 19px;
+      }
+
+      .item__addition-wrap {
+        width: 210px;
+        display: flex;
+        margin-left: auto;
+        margin-right: 50px;
+
+        .item__addition {
+          display: block;
+          font-size: 0.65rem;
+
+          &:nth-child(1) {
+            width: 60%;
+          }
+          &:nth-child(2) {
+            width: 40%;
+          }
+
+          .death {
+            color: $red;
+          }
+          .recover {
+            color: $green;
+          }
+        }
+      }
+    }
+  }
+
+  .toggles-wrapper {
+    margin-top: auto;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.full-screen.countries {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  // height: 100vh;
+  height: calc(100vh - 100px);
+  z-index: 1000;
+}
+
+@media (max-width: 768px) {
+  .countries {
+    height: 400px;
+    &__title {
+      font-size: 1rem;
+      margin-top: 25px;
+    }
+
+    .countries__list {
+      .countries__item {
+        .item__flag {
+          width: 20px;
+          right: 5px;
+        }
+      }
+    }
+  }
+
+  .full-screen.countries {
+    height: 100vh;
+  }
+}

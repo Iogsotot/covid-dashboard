@@ -1,0 +1,23 @@
+@import '../../../shared/variables';
+
+.graph__chartdiv {
+  height: 100%;
+  border: 1px solid $gray-700;
+  background-color: $gray-800;
+  border-radius: 5px;
+}
+
+.full-screen.graph__chartdiv {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: calc(100vh - 100px);
+  z-index: 100;
+}
+
+@media (max-width: 768px) {
+  .full-screen.graph__chartdiv {
+    height: 100vh;
+  }
+}
